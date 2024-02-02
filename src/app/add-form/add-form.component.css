@@ -1,0 +1,39 @@
+.form {
+  width: 50%;
+  margin: 20px auto; /* Center the form on the page */
+  padding: 20px;
+  border: 1px solid #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form h2 {
+  text-align: center;
+}
+
+.input {
+  width: 50%;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #b1c37c;
+  padding: 5px 20px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+}
+
+/* Button Styles */
+.btn {
+  background-color: #8fa64c;
+  height: 30px;
+  border-radius: 30px;
+  width: 160px;
+  margin: 10px 0;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #6c8138;
+}

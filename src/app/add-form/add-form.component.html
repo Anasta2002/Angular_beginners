@@ -1,0 +1,8 @@
+<form [formGroup]="addForm" class="form">
+  <div style="display: flex; flex-direction: column">
+    <h2>Fill out the form here and then click the button to add a new product </h2>
+    <input type="text" formControlName="productName" placeholder="Add product name here" class="input" />
+    <input type="number" formControlName="productPrice" placeholder="Add product price" class="input" />
+    <button type="button" (click)="addNewProduct()" class="btn">OK</button>
+  </div>
+</form>
