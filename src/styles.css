@@ -2,9 +2,19 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #5A6851;
-  color: wheat;
+  /*background-color: #5A6851;*/
+  /*color: wheat;*/
 }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark-theme {
+  background-color: #333333;
+  color: #ffffff;
+}

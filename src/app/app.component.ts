@@ -4,7 +4,7 @@ import {ItemsModule} from "./items/items.module";
 import {MenuModule} from "./menu/menu.module";
 import {ThemeService} from "./services/theme.service";
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -15,32 +15,24 @@ import { Observable } from 'rxjs';
     AddFormModule,
     ItemsModule,
     MenuModule,
-    CommonModule
+    CommonModule,
+    RouterOutlet
   ],
+  providers: [ThemeService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'Grocery store';
-  currentTheme$: Observable<string>;
+  currentTheme: string;
 
-  products = [
-    { id: '1', name: 'cucumber', price: 10 },
-    { id: '2', name: 'tomato', price: 15 },
-    { id: '3', name: 'potato', price: 5 },
-    { id: '4', name: 'broccoli', price: 12 },
-  ];
+  constructor(private themeService: ThemeService) {
+    this.currentTheme = this.themeService.getTheme();
 
-  constructor(private ref: ChangeDetectorRef, private themeService: ThemeService) {
-    this.currentTheme$ = this.themeService.themeChanged;
-  }
-
-  addNewProduct(newProduct: { id: string; name: string; price: number }) {
-    this.products.push(newProduct);
-    console.log('app', this.products);
+    this.themeService.themeChanged$.subscribe((newTheme: string) => {
+      this.currentTheme = newTheme;
+    });
   }
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
   }
-
 }

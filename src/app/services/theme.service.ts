@@ -8,7 +8,7 @@ export class ThemeService {
   private currentTheme = 'light';
   private themeChangedSource = new Subject<string>();
 
-  themeChanged = this.themeChangedSource.asObservable();
+  themeChanged$ = this.themeChangedSource.asObservable();
 
   getTheme(): string {
     return this.currentTheme;
@@ -19,9 +19,4 @@ export class ThemeService {
     this.themeChangedSource.next(this.currentTheme);
     console.log('New Theme:', this.currentTheme);
   }
-
-  constructor() {
-    console.log('ThemeService instantiated');
-  }
-
 }

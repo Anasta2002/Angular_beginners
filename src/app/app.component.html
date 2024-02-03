@@ -1,13 +1,4 @@
-<div [ngClass]="currentTheme$ | async">
-
+<div [ngClass]="currentTheme">
   <app-menu (toggle)="toggleTheme()"></app-menu>
-
-  <div class="content">
-    <div class="main">
-      <h1>{{ title }}</h1>
-    </div>
-    <app-add-form (newProductEvent)="addNewProduct($event)"></app-add-form>
-    <app-items [products]="products"></app-items>
-  </div>
-
+  <router-outlet></router-outlet>
 </div>

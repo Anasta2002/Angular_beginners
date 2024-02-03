@@ -25,9 +25,8 @@
     </div>
   </a>
   <div class="menu_item" (click)="onToggle()">
-    <mat-slide-toggle [aria-label]="getToggleLabel()" (change)="toggleTheme()">
-<!--      <mat-icon>{{ isDarkTheme ? 'brightness_2' : 'wb_sunny' }}</mat-icon>-->
-      <span>{{ isDarkTheme ? 'Dark theme' : 'Light theme' }}</span>
+    <mat-slide-toggle [checked]="currentTheme === 'dark'" (change)="onToggle()">
+      <span>{{ currentTheme === 'dark' ? 'Dark theme' : 'Light theme' }}</span>
     </mat-slide-toggle>
   </div>
 </nav>

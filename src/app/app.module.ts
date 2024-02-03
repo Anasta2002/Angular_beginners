@@ -5,6 +5,7 @@
 // import { AddFormModule } from "./add-form/add-form.module";
 // import { ItemsModule } from "./items/items.module";
 // import {MenuModule} from "./menu/menu.module";
+// import {ThemeService} from "./services/theme.service";
 //
 // @NgModule({
 //   declarations: [AppComponent],
@@ -16,7 +17,7 @@
 //     MenuModule,
 //   ],
 //   exports: [],
-//   providers: [],
+//   providers: [ThemeService],
 //   bootstrap: [AppComponent],
 // })
 // export class AppModule {}

@@ -1,33 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { ThemeService } from '../services/theme.service';
+import {Component, EventEmitter, Output } from '@angular/core';
+import {ThemeService} from "../services/theme.service";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
-export class MenuComponent implements OnInit {
-  isDarkTheme: boolean = false;
 
-  constructor(private themeService: ThemeService) {}
+export class MenuComponent {
+  @Output() toggle = new EventEmitter<void>();
+  currentTheme: string;
 
-  ngOnInit(): void {
-    this.themeService.themeChanged.subscribe((newTheme: string) => {
-      this.isDarkTheme = newTheme === 'dark';
+  constructor(private themeService: ThemeService) {
+    this.currentTheme = this.themeService.getTheme();
+
+    this.themeService.themeChanged$.subscribe((newTheme: string) => {
+      this.currentTheme = newTheme;
     });
-
-    this.isDarkTheme = this.themeService.getTheme() === 'dark';
   }
 
   onToggle(): void {
-    this.themeService.toggleTheme();
-  }
-
-  getToggleLabel(): string {
-    return this.isDarkTheme ? 'Enable Light Theme' : 'Enable Dark Theme';
-  }
-
-  toggleTheme(): void {
-    this.themeService.toggleTheme();
+    this.toggle.emit();
+    console.log('Toggle changed');
   }
 }
