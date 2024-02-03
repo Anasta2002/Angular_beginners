@@ -8,6 +8,7 @@ import { MenuModule } from './menu/menu.module';
 import { ThemeService } from './services/theme.service';
 import { routes } from './app.routes';
 import { AppRoutingModule } from './app.routing.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { AppRoutingModule } from './app.routing.module';
     AddFormModule,
     ItemsModule,
     MenuModule,
+    BrowserModule,
   ],
   declarations: [AppComponent],
   exports: [],

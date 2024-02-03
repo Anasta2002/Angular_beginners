@@ -1,6 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {AddFormModule} from "../add-form/add-form.module";
-import {ItemsModule} from "../items/items.module";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
