@@ -1,21 +1,11 @@
-import {ItemsComponent} from "./items.component";
-import {NgForOf} from "@angular/common";
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ItemsComponent } from './items.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [ItemsComponent],
-  imports: [
-    NgForOf
-  ],
+  imports: [CommonModule],
   providers: [],
-  exports: [
-    ItemsComponent
-  ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA,
-    NO_ERRORS_SCHEMA
-  ],
+  exports: [ItemsComponent],
 })
-
 export class ItemsModule {}
-
