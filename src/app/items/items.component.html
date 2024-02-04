@@ -1,10 +1,12 @@
 <div style="display: flex">
   <div *ngFor="let product of products" class="cards">
-    <a class="card"  href=# >
-      <div>{{product.name}}</div>
+    <a class="card" href="#">
+      <div>{{ product.name }}</div>
       <br />
-      <div>{{product.price}}</div>
+      <div>{{ product.price }}</div>
       <span (click)="deleteProduct(product)" class="closeButton">X</span>
     </a>
   </div>
 </div>
+<hr />
+{{ anotherInput }}
