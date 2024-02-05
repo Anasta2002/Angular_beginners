@@ -5,12 +5,17 @@ import {
   inject,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {LoaderComponent} from "./loader/loader.component";
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    LoaderComponent
+  ]
 })
 export class SettingsComponent {
   private http = inject(HttpClient);

@@ -6,8 +6,8 @@ import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-loader',
-  // standalone: true,
-  // imports: [JsonPipe, NgForOf, MatIcon, NgIf],
+  standalone: true,
+  imports: [JsonPipe, NgForOf, MatIcon, NgIf],
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.css',
 })
