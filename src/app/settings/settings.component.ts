@@ -4,13 +4,10 @@ import {
   Component,
   inject,
 } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {LoaderComponent} from "./loader/loader.component";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-settings',
-  standalone: true,
-  imports: [LoaderComponent, HttpClientModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

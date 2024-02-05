@@ -7,7 +7,11 @@ import {NotFoundComponent} from "./not-found/not-found.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'settings', component: SettingsComponent },
+  {
+    path: 'settings',
+    // loadChildren: () => import('./settings/').then(m => m.CustomersModule)
+    component: SettingsComponent
+  },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'questions', component: QuestionsComponent },
   { path: '**', component: NotFoundComponent },
