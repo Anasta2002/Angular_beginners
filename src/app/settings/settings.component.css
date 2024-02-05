@@ -8,3 +8,8 @@
   width: 1200px;
   margin: 0 auto;
 }
+
+.page_title {
+  margin: 40px 0 0;
+  text-align: center;
+}

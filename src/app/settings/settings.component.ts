@@ -4,8 +4,8 @@ import {
   Component,
   inject,
 } from '@angular/core';
-import { LoaderComponent } from './loader/loader.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {LoaderComponent} from "./loader/loader.component";
 
 @Component({
   selector: 'app-settings',
