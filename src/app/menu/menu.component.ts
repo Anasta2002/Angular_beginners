@@ -8,7 +8,20 @@ import {ThemeService} from "../services/theme.service";
 })
 
 export class MenuComponent {
-  @Output() toggle = new EventEmitter<void>();
+  // @Output() toggle = new EventEmitter<void>();
+  // currentTheme: string;
+  //
+  // constructor(private themeService: ThemeService) {
+  //   this.currentTheme = this.themeService.getTheme();
+  //
+  //   this.themeService.themeChanged$.subscribe((newTheme: string) => {
+  //     this.currentTheme = newTheme;
+  //   });
+  // }
+  //
+  // onToggle(): void {
+  //   this.toggle.emit();
+  // }
   currentTheme: string;
 
   constructor(private themeService: ThemeService) {
@@ -20,7 +33,6 @@ export class MenuComponent {
   }
 
   onToggle(): void {
-    this.toggle.emit();
-    console.log('Toggle changed');
+    this.themeService.toggleTheme();
   }
 }

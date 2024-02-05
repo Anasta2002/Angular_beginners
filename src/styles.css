@@ -1,22 +1,17 @@
+/*@import '~@fortawesome/fontawesome-free/css/all.css';*/
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /*background-color: #5A6851;*/
-  /*color: wheat;*/
+  --bg-color: #eeefed;
+  color: #3f4838;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.light-theme {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-.dark-theme {
-  background-color: #333333;
-  color: #ffffff;
+body.dark-theme {
+  --bg-color-dark: #3f4838;
+  --color-dark: #eeefed;
 }
 
 html, body { height: 100%; }

@@ -24,9 +24,9 @@
       <span>Help</span>
     </div>
   </a>
-  <div class="menu_item" (click)="onToggle()">
-    <mat-slide-toggle [checked]="currentTheme === 'dark'" (change)="onToggle()">
-      <span>{{ currentTheme === 'dark' ? 'Dark theme' : 'Light theme' }}</span>
-    </mat-slide-toggle>
+  <div>
+    <span (click)="onToggle()">
+      <span>Switch theme to {{ currentTheme === 'light' ? 'light' : 'dark' }}</span>
+    </span>
   </div>
 </nav>
