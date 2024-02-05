@@ -1,11 +1,18 @@
 .main {
-  h1 {
-    text-align: center;
-    margin: 40px;
-  }
+
 }
 
 .content {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.page_title {
+  margin: 40px 0 0;
+  text-align: center;
+}
+
+.cards_container {
   width: 1200px;
   margin: 0 auto;
 }

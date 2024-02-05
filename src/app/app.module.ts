@@ -9,6 +9,7 @@ import { ThemeService } from './services/theme.service';
 import { routes } from './app.routes';
 import { AppRoutingModule } from './app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { BrowserModule } from '@angular/platform-browser';
     ItemsModule,
     MenuModule,
     BrowserModule,
+    BrowserAnimationsModule,
   ],
   declarations: [AppComponent],
   exports: [],

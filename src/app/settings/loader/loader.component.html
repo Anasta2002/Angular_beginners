@@ -1,3 +1,16 @@
-<button (click)="loadHandler()">Load</button>
+<div class="btn_container">
+  <button (click)="loadHandler()" class="btn">Load ToDo list</button>
+</div>
 
-<pre>{{ data | json }}</pre>
+<div class="cards_container">
+  <div *ngFor="let todo of data" class="cards">
+    <div [class.green_card]="todo.completed" [class.card]="!todo.completed">
+      <div>{{ todo.title }}</div>
+      <br />
+      <div class="icons-container">
+        <mat-icon *ngIf="todo.completed" class="completed-icon" (click)="changeComplete(todo)">check_circle</mat-icon>
+        <mat-icon *ngIf="!todo.completed" class="not-completed-icon" (click)="changeComplete(todo)">check_box_outline_blank</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
