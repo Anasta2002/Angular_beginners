@@ -12,7 +12,7 @@ import {MatIcon} from "@angular/material/icon";
 })
 export class LoaderComponent {
   @Output() onLoaderClick: EventEmitter<void> = new EventEmitter();
-  @Input() data: any;
+  @Input() data: any[] = [];
 
   loadHandler() {
     this.onLoaderClick.emit();
@@ -20,5 +20,10 @@ export class LoaderComponent {
 
   changeComplete(todo: any) {
     todo.completed = !todo.completed;
+  }
+
+  deleteToDo(todo: any) {
+    const index = this.data.indexOf(todo);
+    index !== -1 && this.data.splice(index, 1)
   }
 }

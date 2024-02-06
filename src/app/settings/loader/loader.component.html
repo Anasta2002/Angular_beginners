@@ -6,7 +6,7 @@
   <div *ngFor="let todo of data" class="cards">
     <div [class.green_card]="todo.completed" [class.card]="!todo.completed">
       <div>{{ todo.title }}</div>
-      <br />
+      <i class="material-icons" style="position: absolute; top: 5px; right: 5px" (click)="deleteToDo(todo)">close</i>
       <div class="icons-container">
         <mat-icon *ngIf="todo.completed" class="completed-icon" (click)="changeComplete(todo)">check_circle</mat-icon>
         <mat-icon *ngIf="!todo.completed" class="not-completed-icon" (click)="changeComplete(todo)">check_box_outline_blank</mat-icon>
