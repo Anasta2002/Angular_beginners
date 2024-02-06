@@ -7,8 +7,7 @@ import { ThemeService } from './services/theme.service';
 import { AppRoutingModule } from './app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
@@ -21,17 +20,11 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     BrowserAnimationsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [AppComponent],
   exports: [],
   providers: [ThemeService],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
-    // Register custom icons
-    this.matIconRegistry.addSvgIcon('sun', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/sun.svg'));
-    this.matIconRegistry.addSvgIcon('moon', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/moon.svg'));
-  }
-}
+export class AppModule {}

@@ -6,13 +6,29 @@ import {QuestionsComponent} from "./questions/questions.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
   {
     path: 'settings',
-    // loadChildren: () => import('./settings/').then(m => m.CustomersModule)
+    // loadChildren: () => import('./settings/settings.module.ts').then(m => m.SettingsModule)
     component: SettingsComponent
   },
-  { path: 'notifications', component: NotificationsComponent },
-  { path: 'questions', component: QuestionsComponent },
-  { path: '**', component: NotFoundComponent },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
+    // loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule)
+  },
+  {
+    path: 'questions',
+    component: QuestionsComponent,
+    loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsModule)
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)
+  },
 ];

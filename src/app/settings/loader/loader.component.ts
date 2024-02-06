@@ -1,6 +1,5 @@
 import {JsonPipe, NgForOf, NgIf} from '@angular/common';
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { Validators } from '@angular/forms';
 import {MatIcon} from "@angular/material/icon";
 
 
@@ -17,7 +16,6 @@ export class LoaderComponent {
 
   loadHandler() {
     this.onLoaderClick.emit();
-    console.log('data', this.data)
   }
 
   changeComplete(todo: any) {

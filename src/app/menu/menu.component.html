@@ -3,29 +3,25 @@
   <a class="button" routerLink="/">
     <div class="menu_item">
       <mat-icon>home</mat-icon>
-      <span>Home</span>
     </div>
   </a>
   <a class="button" routerLink="/settings">
     <div class="menu_item">
       <mat-icon>settings</mat-icon>
-      <span>Settings</span>
     </div>
   </a>
   <a class="button" routerLink="/notifications">
     <div class="menu_item">
       <mat-icon>notifications</mat-icon>
-      <span>Notifications</span>
     </div>
   </a>
   <a class="button" routerLink="/questions">
     <div class="menu_item">
       <mat-icon>help</mat-icon>
-      <span>Help</span>
     </div>
   </a>
   <div>
-    <span (click)="onToggle()">
+    <span (click)="onToggle()" class="menu_item">
       <span>Switch theme to {{ currentTheme === 'light' ? 'light' : 'dark' }}</span>
     </span>
   </div>

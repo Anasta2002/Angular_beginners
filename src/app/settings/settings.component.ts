@@ -30,5 +30,6 @@ export class SettingsComponent {
         this.data = data;
         this.cd.markForCheck();
       });
+    console.log('data_settings', this.data)
   }
 }

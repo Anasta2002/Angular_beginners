@@ -16,7 +16,6 @@ export class ThemeService {
 
   toggleTheme(): void {
     this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-    console.log('New Theme Service:', this.currentTheme);
     this.themeChangedSource.next(this.currentTheme);
   }
 }

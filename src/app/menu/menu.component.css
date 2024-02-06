@@ -6,24 +6,24 @@
   border-radius: 0 0 10px 10px;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu_item {
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  justify-content: center;
   min-width: 100px;
 }
 
 .menu_item mat-icon {
   margin-right: 10px;
+  transition: transform 0.3s ease;
 }
 
-.menu_item span {
-  visibility: hidden;
-  transition: visibility 0.3s ease-in-out;
-}
-
-.menu_item:hover span {
-  visibility: visible;
+.menu_item:hover {
+  transform: scale(1.1);
 }

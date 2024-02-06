@@ -3,7 +3,7 @@
 // import { LoaderComponent } from "./loader/loader.component";
 // import { HttpClientModule } from "@angular/common/http";
 // import { SettingsComponent } from "./settings.component";
-// import {LoaderModule} from "./loader/loader.module";
+// // import {LoaderModule} from "./loader/loader.module";
 //
 // @NgModule({
 //   declarations: [SettingsComponent],
@@ -11,7 +11,8 @@
 //     CommonModule,
 //     LoaderComponent,
 //     HttpClientModule,
-//     LoaderModule,
+//     // LoaderModule,
+//     LoaderComponent
 //   ],
 //   exports: [SettingsComponent]
 // })
