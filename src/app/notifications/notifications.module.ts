@@ -1,20 +1,13 @@
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { FormsModule } from "@angular/forms";
-import {NotificationsComponent} from "./notifications.component";
-import {AsyncPipe, NgForOf} from "@angular/common";
-import {NotificationLoaderModule} from "./notification-loader/notification-loader.module";
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NotificationsComponent } from './notifications.component';
+import { CommonModule } from '@angular/common';
+import { NotificationLoaderComponent } from './notification-loader/notification-loader.component';
 
 @NgModule({
-  declarations: [NotificationsComponent],
-  imports: [
-    RouterModule.forRoot([]),
-    FormsModule,
-    NgForOf,
-    AsyncPipe,
-    NotificationLoaderModule,
-  ],
-  exports: [NotificationsComponent]
+  declarations: [NotificationsComponent, NotificationLoaderComponent],
+  imports: [CommonModule, FormsModule],
+  exports: [NotificationsComponent],
 })
-
 export class NotificationsModule {}

@@ -1,19 +1,13 @@
-// import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { LoaderComponent } from "./loader/loader.component";
-// import { HttpClientModule } from "@angular/common/http";
-// import { SettingsComponent } from "./settings.component";
-// // import {LoaderModule} from "./loader/loader.module";
-//
-// @NgModule({
-//   declarations: [SettingsComponent],
-//   imports: [
-//     CommonModule,
-//     LoaderComponent,
-//     HttpClientModule,
-//     // LoaderModule,
-//     LoaderComponent
-//   ],
-//   exports: [SettingsComponent]
-// })
-// export class SettingsModule { }
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { SettingsComponent } from './settings.component';
+import { LoaderComponent } from './loader/loader.component';
+import { MatIconModule } from '@angular/material/icon';
+
+@NgModule({
+  declarations: [SettingsComponent, LoaderComponent],
+  imports: [CommonModule, HttpClientModule, MatIconModule],
+  exports: [SettingsComponent],
+})
+export class SettingsModule {}

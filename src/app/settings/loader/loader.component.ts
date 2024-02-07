@@ -1,18 +1,26 @@
-import {JsonPipe, NgForOf, NgIf} from '@angular/common';
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import {MatIcon} from "@angular/material/icon";
-
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-loader',
-  standalone: true,
-  imports: [JsonPipe, NgForOf, MatIcon, NgIf],
   templateUrl: './loader.component.html',
-  styleUrl: './loader.component.css',
+  styleUrls: ['./loader.component.css'],
 })
-export class LoaderComponent {
+export class LoaderComponent implements OnChanges {
   @Output() onLoaderClick: EventEmitter<void> = new EventEmitter();
   @Input() data: any[] = [];
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('data' in changes) {
+      console.log(changes['data']);
+    }
+  }
 
   loadHandler() {
     this.onLoaderClick.emit();
@@ -24,6 +32,6 @@ export class LoaderComponent {
 
   deleteToDo(todo: any) {
     const index = this.data.indexOf(todo);
-    index !== -1 && this.data.splice(index, 1)
+    index !== -1 && this.data.splice(index, 1);
   }
 }
