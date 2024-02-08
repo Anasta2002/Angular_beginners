@@ -68,3 +68,7 @@
 .active .arrow-icon {
   transform: rotate(180deg);
 }
+
+.details {
+  padding: 20px;
+}

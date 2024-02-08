@@ -12,16 +12,25 @@ export class NotificationLoaderComponent {
   currentIndexMap: { [productId: number]: number } = {};
 
   nextSlide(product: any) {
+    if (!this.currentIndexMap[product.id]) {
+      this.currentIndexMap[product.id] = 0;
+    }
     this.currentIndexMap[product.id] = (this.currentIndexMap[product.id] + 1) % product.images.length;
-    console.log('currentIndexMap_next', this.currentIndexMap[product.id] )
+    console.log('currentIndexMap_next', this.currentIndexMap[product.id]);
   }
 
   prevSlide(product: any) {
-    console.log('currentIndexMap_prev', this.currentIndexMap[product.id] )
+    if (!this.currentIndexMap[product.id]) {
+      this.currentIndexMap[product.id] = 0;
+    }
+    console.log('currentIndexMap_prev', this.currentIndexMap[product.id]);
     this.currentIndexMap[product.id] = (this.currentIndexMap[product.id] - 1 + product.images.length) % product.images.length;
   }
 
   toggleAccordion(product: any) {
+    if (!product.id) {
+      product.id = Math.floor(Math.random() * 1000);
+    }
     product.isOpen = !product.isOpen;
   }
 
