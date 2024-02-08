@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  inject,
+  inject, OnInit,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,11 +12,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./notifications.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotificationsComponent {
+export class NotificationsComponent implements OnInit {
   private http = inject(HttpClient);
   private cd = inject(ChangeDetectorRef);
 
   products: any[] | undefined;
+
+  ngOnInit() {
+    this.handlerClick();
+  }
 
   handlerClick() {
     this.http.get<any>('https://dummyjson.com/products').subscribe((data) => {

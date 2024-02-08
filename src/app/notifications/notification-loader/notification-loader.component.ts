@@ -6,7 +6,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./notification-loader.component.css'],
 })
 export class NotificationLoaderComponent {
-  @Output() handlerClick: EventEmitter<void> = new EventEmitter();
   @Input() products: any;
 
   currentIndexMap: { [productId: number]: number } = {};
@@ -33,10 +32,4 @@ export class NotificationLoaderComponent {
     }
     product.isOpen = !product.isOpen;
   }
-
-  loadHandler() {
-    this.handlerClick.emit();
-  }
-
-  currentIndex = 0;
 }
