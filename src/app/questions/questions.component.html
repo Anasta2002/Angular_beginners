@@ -1,1 +1,19 @@
-<p>questions works!</p>
+<div>
+  <h2>Questions</h2>
+<!--  <mat-spinner *ngIf="loading" mode="determinate"></mat-spinner>-->
+<!--  why spinner not working?-->
+  <div class="user-cards">
+    <div *ngFor="let user of data; let i = index" class="user-card" id="user-{{i}}">
+      <div class="user-info">
+        <div class="user-avatar">
+          <img src="{{ user.profile_picture }}" alt="{{ user.first_name }} {{ user.last_name }}" />
+        </div>
+        <div class="user-details">
+          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+          <p>{{ user.job }}</p>
+          <p>{{ user.city }}, {{ user.state }}, {{ user.country }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

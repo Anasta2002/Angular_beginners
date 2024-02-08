@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {QuestionsComponent} from "./questions.component";
+import {PaginationService} from "../services/pagination.service";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 
 
 @NgModule({
   declarations: [QuestionsComponent],
-  imports: [
-    CommonModule
-  ],
+    imports: [
+        CommonModule,
+        MatProgressSpinner
+    ],
+  providers: [PaginationService],
   exports: [QuestionsComponent]
 })
 export class QuestionsModule { }
