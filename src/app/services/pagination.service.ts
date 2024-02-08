@@ -10,7 +10,7 @@ export class PaginationService {
   public data$: Observable<any[]> = this.dataSubject.asObservable();
 
   private offset = 0;
-  private limit = 10;
+  private limit = 20;
 
   constructor(private http: HttpClient) {}
 

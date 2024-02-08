@@ -1,5 +1,6 @@
 .app_main {
   background-color: var(--bg-color-dark);
   color: var(--color-dark);
-  height: 100%;
+  height: auto;
+  min-height: 100%;
 }
