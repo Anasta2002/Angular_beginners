@@ -1,5 +1,35 @@
 <button (click)="loadHandler()">Load</button>
-<div *ngFor="let product of products">
-  <div>{{ product.title }}</div>
-  <div>{{ product.description }}</div>
+<div *ngFor="let product of products" class="accordion">
+  <div class="accordion-header" (click)="toggleAccordion(product)">
+    <span>{{ product.title }}</span>
+    <mat-icon class="arrow-icon">keyboard_arrow_down</mat-icon>
+  </div>
+  <div class="accordion-content" [ngClass]="{'active': product.isOpen}">
+    <div class="details">
+      <div><strong>Description:</strong> {{ product.description }}</div>
+      <div><strong>Brand:</strong> {{ product.brand }}</div>
+      <div><strong>Category:</strong> {{ product.category }}</div>
+      <div><strong>Discount Percentage:</strong> {{ product.discountPercentage }}</div>
+      <div><strong>ID:</strong> {{ product.id }}</div>
+      <div><strong>Price:</strong> ${{ product.price }}</div>
+      <div><strong>Rating:</strong> {{ product.rating }}</div>
+      <div><strong>Stock:</strong> {{ product.stock }}</div>
+
+      <div class="custom-slider">
+        <div class="slider-wrapper" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
+          <div class="slider-item" *ngFor="let photo of product.images; let i = index">
+            <img [src]="photo" alt="Product Photo" class="slider-image" />
+          </div>
+        </div>
+        <button mat-icon-button (click)="prevSlide(product)" class="slider-nav prev" [disabled]="currentIndexMap[product.id] === 0">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-icon-button (click)="nextSlide(product)" class="slider-nav next" [disabled]="currentIndexMap[product.id] === product.images.length - 1">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+
+
+    </div>
+  </div>
 </div>
