@@ -13,6 +13,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   loading = true;
   private dataSubscription: Subscription | undefined;
   private scrollSubject = new Subject<void>();
+  title: string = 'Lazy loading';
 
   constructor(private paginationService: PaginationService) {}
 

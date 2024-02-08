@@ -15,6 +15,7 @@ import { HttpClient } from '@angular/common/http';
 export class NotificationsComponent implements OnInit {
   private http = inject(HttpClient);
   private cd = inject(ChangeDetectorRef);
+  title: string = 'Practice of get requests'
 
   products: any[] | undefined;
 

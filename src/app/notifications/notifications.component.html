@@ -1,5 +1,12 @@
 <div class="content">
-  <app-notification-loader
-    [products]="products"
-  ></app-notification-loader>
+  <h1 class="page_title">{{ title }}</h1>
+  <ul class='list'>Description: Click on the accordion to see more product details
+    <li>Created accordion</li>
+    <li>Created images slider</li>
+  </ul>
+  <div class="accordions_container">
+    <app-notification-loader
+      [products]="products"
+    ></app-notification-loader>
+  </div>
 </div>

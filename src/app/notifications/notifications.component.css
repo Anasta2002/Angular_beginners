@@ -2,3 +2,17 @@
   width: 1200px;
   margin: 40px auto;
 }
+
+.page_title {
+  margin: 40px 0 0;
+  text-align: center;
+}
+
+.list {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.accordions_container {
+  margin: 40px 0;
+}
