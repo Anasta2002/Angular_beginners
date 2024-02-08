@@ -9,6 +9,9 @@ export class PaginationService {
   private dataSubject = new BehaviorSubject<any[]>([]);
   public data$: Observable<any[]> = this.dataSubject.asObservable();
 
+  private totalItemsSubject = new BehaviorSubject<number>(0);
+  public totalItems$: Observable<number> = this.totalItemsSubject.asObservable();
+
   private offset = 0;
   private limit = 10;
 
@@ -20,22 +23,15 @@ export class PaginationService {
 
   private fetchData() {
     const url = `https://api.slingacademy.com/v1/sample-data/users?offset=${this.offset}&limit=${this.limit}`;
-    this.http.get<{ users: any[] }>(url).subscribe(
+    this.http.get<{ users: any[]; totalItems: number }>(url).subscribe(
       (response) => {
         const currentData = this.dataSubject.value;
         const insertionIndex = currentData.length;
         const newData = response.users.filter(newUser => !currentData.some(existingUser => existingUser.id === newUser.id));
         this.dataSubject.next([...currentData, ...newData]);
-        this.scrollToIndex(insertionIndex);
+        this.totalItemsSubject.next(response.totalItems); // Update totalItems
       }
     );
-  }
-
-  private scrollToIndex(index: number) {
-    const element = document.querySelector(`#user-${index}`);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
   }
 
   public fetchNextPage() {

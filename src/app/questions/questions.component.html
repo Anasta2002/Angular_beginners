@@ -1,7 +1,5 @@
 <div>
   <h2>Questions</h2>
-<!--  <mat-spinner *ngIf="loading" mode="determinate"></mat-spinner>-->
-<!--  why spinner not working?-->
   <div class="user-cards">
     <div *ngFor="let user of data; let i = index" class="user-card" id="user-{{i}}">
       <div class="user-info">
@@ -16,4 +14,6 @@
       </div>
     </div>
   </div>
+  <mat-paginator [length]="totalItems" [pageSize]="10"
+                 [pageSizeOptions]="[10, 25, 50, 100]" (page)="onPageChange($event)"></mat-paginator>
 </div>
