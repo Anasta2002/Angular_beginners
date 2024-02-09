@@ -1,23 +1,21 @@
 <div class="content">
-  <h1 class="page_title">{{ title }}</h1>
-  <ul class='list'>Description: Lazy loading works when a user scrolls to the bottom of the page and gives you 20 new users
-    <li>Created accordion</li>
-    <li>Created images slider</li>
-  </ul>
+  <h1 class="page_title">Users</h1>
+
   <mat-spinner *ngIf="loading" mode="determinate"></mat-spinner>
   <!--  why spinner not working?-->
   <div class="user-cards">
-    <div *ngFor="let user of data; let i = index" class="user-card" id="user-{{i}}">
+    <div *ngFor="let user of users$ | async" class="user-card">
       <div class="user-info">
         <div class="user-avatar">
-          <img src="{{ user.profile_picture }}" alt="{{ user.first_name }} {{ user.last_name }}" />
+          <img [src]="user.avatar" [alt]="user.name" />
         </div>
         <div class="user-details">
-          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+          <h3>{{ user.name }}</h3>
           <p>{{ user.job }}</p>
-          <p>{{ user.city }}, {{ user.state }}, {{ user.country }}</p>
+          <p>{{ user.from }}</p>
         </div>
       </div>
     </div>
+    <button (click)="loadMore()">Load more</button>
   </div>
 </div>
