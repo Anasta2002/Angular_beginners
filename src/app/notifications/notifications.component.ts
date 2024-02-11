@@ -2,9 +2,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  inject, OnInit,
+  inject,
+  OnInit,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { UsersService } from '../services/users.service';
+import { RawUser } from '../models';
 
 @Component({
   selector: 'app-notifications',
@@ -15,15 +19,28 @@ import { HttpClient } from '@angular/common/http';
 export class NotificationsComponent implements OnInit {
   private http = inject(HttpClient);
   private cd = inject(ChangeDetectorRef);
-  title: string = 'Practice of get requests'
+  private usersService = inject(UsersService);
+  title: string = 'Practice of get requests';
 
   products: any[] | undefined;
 
+  public users$ = new BehaviorSubject<RawUser[]>([]);
+
   ngOnInit() {
-    this.handlerClick();
+    this.usersService
+      .getUsers({ limit: 10, offset: 0 })
+      .subscribe((response) => {
+        this.users$.next(response.users);
+      });
+
+    setTimeout(() => {
+      this.users$.next([]);
+    }, 2000);
   }
 
   handlerClick() {
+    this.users$.value;
+
     this.http.get<any>('https://dummyjson.com/products').subscribe((data) => {
       this.products = data.products;
       console.log(this.products);

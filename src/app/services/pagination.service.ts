@@ -12,15 +12,14 @@ export class PaginationService {
   private users$ = new BehaviorSubject<User[]>([]);
 
   private offset = 0;
-  private limit = 20;
 
   getUsers(): Observable<User[]> {
     return this.users$.asObservable();
   }
 
-  private fetchUsers() {
+  private fetchUsers(params: { limit: number }) {
     return this.usersService
-      .getUsers({ limit: this.limit, offset: this.offset })
+      .getUsers({ limit: params.limit, offset: this.offset })
       .pipe(
         map((res) => {
           this.offset = this.offset + 20;
@@ -30,8 +29,8 @@ export class PaginationService {
       );
   }
 
-  load(): void {
-    this.fetchUsers().subscribe((users) => {
+  load(params: { limit: number }): void {
+    this.fetchUsers(params).subscribe((users) => {
       this.users$.next([...this.users$.value, ...users]);
     });
   }

@@ -3,7 +3,7 @@
 
   <mat-spinner *ngIf="loading" mode="determinate"></mat-spinner>
   <!--  why spinner not working?-->
-  <div class="user-cards">
+  <div class="user-cards" #cards>
     <div *ngFor="let user of users$ | async" class="user-card">
       <div class="user-info">
         <div class="user-avatar">
