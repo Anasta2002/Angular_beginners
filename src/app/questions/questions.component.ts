@@ -19,7 +19,7 @@ import { User } from '../models';
 })
 export class QuestionsComponent implements OnInit, AfterViewInit {
   users$: Observable<User[]> = this.paginationService.getUsers();
-  loading = true;
+  loading: boolean = false;
 
   private USER_CARD_WIDTH: number = 300;
   private CARD_WIDTH_MAP: Record<number, number> = {
@@ -34,35 +34,34 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
 
   private limit: number = 0;
 
-  constructor(private paginationService: PaginationService) {}
+  // itemsAmountOnpPage: number = 0;
+
+  constructor(private paginationService: PaginationService) {
+    this.paginationService.getLoading().subscribe((loading) => {
+      this.loading = loading;
+    });
+  }
 
   ngOnInit() {
-    // подписываемся на наш сабжект с актуальной шириной
-    // debounceTime(300) получаем новую ширину один раз в 300 миллисекунд
-    // subscribe((width) -> будет ширина раз в 300 миллисекунд
     this.width$.pipe(debounceTime(300)).subscribe((width) => {
       this.limit = this.getLimit(width);
+      // this.itemsAmountOnpPage = this.limit;
     });
   }
 
   ngAfterViewInit(): void {
     const observer = new ResizeObserver((entries) => {
       entries.forEach((entry) => {
-        // entry.contentRect.width здесь всегда получаем новую ширину
-        // отправляем нашу актуальную ширину в наш behavior subject
         this.width$.next(entry.contentRect.width);
       });
     });
 
     if (this.cards?.nativeElement) {
-      // делаем в самый первый раз, когда у нас уже есть div
-      // this.cards.nativeElement.clientWidth начальная ширина
       this.paginationService.load({
         limit: this.getLimit(this.cards.nativeElement.clientWidth),
       });
 
-      // this.cards.nativeElement -> div.user-cards
-      observer.observe(this.cards.nativeElement); // подписка на resize дива
+      observer.observe(this.cards.nativeElement);
     }
   }
 

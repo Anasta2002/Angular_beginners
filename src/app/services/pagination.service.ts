@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { PaginatedUser, RawUser, User } from '../models';
+import { User } from '../models';
 import { UsersService } from './users.service';
 
 @Injectable({
@@ -10,6 +9,12 @@ import { UsersService } from './users.service';
 export class PaginationService {
   private usersService = inject(UsersService);
   private users$ = new BehaviorSubject<User[]>([]);
+  private loading = false;
+  private loading$ = new BehaviorSubject<boolean>(this.loading);
+
+  getLoading(): Observable<boolean> {
+    return this.loading$.asObservable();
+  }
 
   private offset = 0;
 
@@ -30,8 +35,11 @@ export class PaginationService {
   }
 
   load(params: { limit: number }): void {
+    this.loading$.next(true);
+
     this.fetchUsers(params).subscribe((users) => {
       this.users$.next([...this.users$.value, ...users]);
+      this.loading$.next(false);
     });
   }
 }

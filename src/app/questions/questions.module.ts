@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {QuestionsComponent} from "./questions.component";
 import {PaginationService} from "../services/pagination.service";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {MatPaginator} from "@angular/material/paginator";
 
 
 
@@ -10,7 +11,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
   declarations: [QuestionsComponent],
     imports: [
         CommonModule,
-        MatProgressSpinner
+        MatProgressSpinner,
+        MatPaginator
     ],
   providers: [PaginationService],
   exports: [QuestionsComponent]
