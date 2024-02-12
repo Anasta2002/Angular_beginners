@@ -19,6 +19,10 @@
   min-width: 100px;
 }
 
+.menu_item .mat-icon {
+  color: #3f4838;
+}
+
 .menu_item mat-icon {
   margin-right: 10px;
   transition: transform 0.3s ease;
@@ -26,4 +30,15 @@
 
 .menu_item:hover {
   transform: scale(1.1);
+}
+
+.mat-badge.mat-badge {
+  overflow: visible;
+  position: absolute;
+  right: 40px;
+  top: 0;
+}
+
+.menu_button {
+  position: relative;
 }

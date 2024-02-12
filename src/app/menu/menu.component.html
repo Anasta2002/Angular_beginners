@@ -1,24 +1,30 @@
 
 <nav class="menuWrapper">
-  <a class="button" routerLink="/">
+  <a class="menu_button" routerLink="/">
     <div class="menu_item">
       <mat-icon>home</mat-icon>
     </div>
   </a>
-  <a class="button" routerLink="/settings">
+  <a class="menu_button" routerLink="/settings">
     <div class="menu_item">
       <mat-icon>settings</mat-icon>
     </div>
   </a>
-  <a class="button" routerLink="/notifications">
+  <a class="menu_button" routerLink="/notifications">
     <div class="menu_item">
       <mat-icon>notifications</mat-icon>
     </div>
   </a>
-  <a class="button" routerLink="/questions">
+  <a class="menu_button" routerLink="/questions">
     <div class="menu_item">
       <mat-icon>help</mat-icon>
     </div>
+  </a>
+  <a class="menu_button" routerLink="/cart">
+    <div class="menu_item">
+      <mat-icon>shopping_cart</mat-icon>
+    </div>
+    <span *ngIf="numberOfCartItems > 0" matBadge={{numberOfCartItems}} matBadgePosition="below before"></span>
   </a>
   <div>
     <span (click)="onToggle()" class="menu_item">

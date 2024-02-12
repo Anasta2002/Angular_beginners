@@ -4,6 +4,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {CartComponent} from "./cart/cart.component";
 
 export const routes: Routes = [
   {
@@ -30,6 +31,12 @@ export const routes: Routes = [
     component: QuestionsComponent,
     loadChildren: () =>
       import('./questions/questions.module').then((m) => m.QuestionsModule),
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    loadChildren: () =>
+      import('./cart/cart.module').then((m) => m.CartModule),
   },
   {
     path: '**',

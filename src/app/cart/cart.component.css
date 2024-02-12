@@ -21,23 +21,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.closeButton {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
 .cards_container {
   display: flex;
   flex-wrap: wrap;
-}
-
-.material-icons {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-}
-
-.material-icons:hover {
-  transform: scale(1.2);
 }

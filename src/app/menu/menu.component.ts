@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Output } from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {ThemeService} from "../services/theme.service";
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-menu',
@@ -8,30 +9,22 @@ import {ThemeService} from "../services/theme.service";
 })
 
 export class MenuComponent {
-  // @Output() toggle = new EventEmitter<void>();
-  // currentTheme: string;
-  //
-  // constructor(private themeService: ThemeService) {
-  //   this.currentTheme = this.themeService.getTheme();
-  //
-  //   this.themeService.themeChanged$.subscribe((newTheme: string) => {
-  //     this.currentTheme = newTheme;
-  //   });
-  // }
-  //
-  // onToggle(): void {
-  //   this.toggle.emit();
-  // }
-  currentTheme: string;
+  currentTheme: string | undefined;
+  numberOfCartItems: number = 0;
 
-  constructor(private themeService: ThemeService) {
+  constructor(private themeService: ThemeService, private cartService: CartService) {}
+
+  ngOnInit(): void {
     this.currentTheme = this.themeService.getTheme();
 
     this.themeService.themeChanged$.subscribe((newTheme: string) => {
       this.currentTheme = newTheme;
     });
-  }
 
+    this.cartService.cartState$.subscribe((cartState: any[]) => {
+      this.numberOfCartItems = cartState.length;
+    });
+  }
   onToggle(): void {
     this.themeService.toggleTheme();
   }

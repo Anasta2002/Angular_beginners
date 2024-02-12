@@ -5,6 +5,8 @@
       <br />
       <div>{{product.price}}</div>
       <span (click)="deleteProduct(product)" class="closeButton">X</span>
+      <i class="material-icons"  *ngIf="!isProductInCart(product)" (click)="addToCart(product)">shopping_cart</i>
+      <i class="material-icons"  *ngIf="isProductInCart(product)" (click)="removeFromCart(product)">remove_shopping_cart</i>
     </a>
   </div>
 </div>
