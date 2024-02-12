@@ -28,7 +28,8 @@
   </a>
   <div>
     <span (click)="onToggle()" class="menu_item">
-      <span>Switch theme to {{ currentTheme === 'light' ? 'light' : 'dark' }}</span>
+      <mat-icon class="material-icons" *ngIf="currentTheme==='dark'">dark_mode</mat-icon>
+      <mat-icon class="material-icons" *ngIf="currentTheme==='light'">light_mode</mat-icon>
     </span>
   </div>
 </nav>
