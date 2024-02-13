@@ -26,10 +26,10 @@ export class PaginationService {
     this.http.get<{ users: any[]; totalItems: number }>(url).subscribe(
       (response) => {
         const currentData = this.dataSubject.value;
-        const insertionIndex = currentData.length;
-        const newData = response.users.filter(newUser => !currentData.some(existingUser => existingUser.id === newUser.id));
+        const newData = response.users;
+
         this.dataSubject.next([...currentData, ...newData]);
-        this.totalItemsSubject.next(response.totalItems); // Update totalItems
+        this.totalItemsSubject.next(response.totalItems);
       }
     );
   }
