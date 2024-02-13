@@ -1,0 +1,9 @@
+<h4>User's names</h4>
+<mat-form-field>
+  <mat-label>Users</mat-label>
+  <mat-select>
+    @for (name of usersNames; track usersNames) {
+      <mat-option [value]="name">{{name}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

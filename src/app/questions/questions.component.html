@@ -1,6 +1,8 @@
-<div class="spinner-wrapper">
-  <mat-spinner *ngIf="loading"></mat-spinner>
+<div class="spinner-wrapper" *ngIf="loading">
+  <mat-spinner></mat-spinner>
 </div>
+
+<app-users-dropdown [usersNames]="usersNames"></app-users-dropdown>
 
 <div>
   <h2>Questions</h2>

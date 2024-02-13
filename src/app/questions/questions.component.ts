@@ -11,9 +11,10 @@ import { Subscription } from 'rxjs';
 })
 export class QuestionsComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<any>();
-  loading = true; // Loading state for the component
+  loading = true;
   data: any[] = [];
   totalItems = 0;
+  usersNames: string[] = [];
 
   private dataSubscription: Subscription | undefined;
   private totalItemsSubscription: Subscription | undefined;
@@ -31,7 +32,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
       console.log('Data:', newData);
       this.data = newData;
       this.dataSource.data = newData;
-      this.loading = false; // Set loading state to false after data is loaded
+      this.loading = false;
       this.cdr.detectChanges();
     });
 
@@ -41,6 +42,9 @@ export class QuestionsComponent implements OnInit, OnDestroy {
     });
 
     this.observeBottomMarker();
+
+    this.usersNames = this.data.map(user => user.first_name + ' ' + user.last_name);
+    console.log('user_transfer', this.usersNames)
   }
 
   ngOnDestroy() {
@@ -49,7 +53,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   }
 
   private loadPage(page: number = 1) {
-    this.loading = true; // Set loading state to true before fetching data
+    this.loading = true;
     this.paginationService.fetchNextPage();
     console.log('loading', this.loading);
   }
