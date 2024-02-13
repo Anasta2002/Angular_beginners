@@ -1,7 +1,10 @@
+<div class="spinner-wrapper">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+</div>
+
 <div>
   <h2>Questions</h2>
   <div class="user-cards">
-    <mat-progress-spinner mode="indeterminate" *ngIf="loading" ></mat-progress-spinner>
     <div *ngFor="let user of data; let i = index" class="user-card" id="user-{{i}}">
       <div class="user-info">
         <div class="user-avatar">
