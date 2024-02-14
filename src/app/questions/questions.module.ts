@@ -9,6 +9,8 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {usersDropdownComponent} from "./usersDropdown/usersDropdown.component";
 import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
+import {UsersService} from "../services/users.service";
+import {UserByIdService} from "../services/user-by-id.service";
 
 @NgModule({
   declarations: [QuestionsComponent, usersDropdownComponent],
@@ -25,7 +27,7 @@ import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
     FormsModule,
     UserCardComponent,
   ],
-  providers: [],
+  providers: [UsersService, UserByIdService],
   exports: [QuestionsComponent]
 })
 export class QuestionsModule { }

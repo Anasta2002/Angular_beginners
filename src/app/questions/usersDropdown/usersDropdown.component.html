@@ -1,5 +1,5 @@
 <h4>User's names</h4>
-<mat-form-field>
+<mat-form-field (click)="getInitialOptions()">
   <mat-label>Users</mat-label>
   <mat-select [(ngModel)]="selectedUser" (selectionChange)="onUserSelectionChange($event)">
     <mat-option *ngFor="let user of initialOptions" [value]="user">
