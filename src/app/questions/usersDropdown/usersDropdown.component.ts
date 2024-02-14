@@ -1,5 +1,5 @@
-import {ChangeDetectorRef, Input, OnChanges, SimpleChanges, Component} from '@angular/core';
-import {RawUser} from "../../models";
+import {ChangeDetectorRef, Component} from '@angular/core';
+import { UserByIdService } from "../../services/user-by-id.service";
 
 @Component({
   selector: 'app-users-dropdown',
@@ -7,14 +7,31 @@ import {RawUser} from "../../models";
   styleUrls: ['./usersDropdown.component.css'],
 })
 
-export class usersDropdownComponent implements OnChanges  {
-  @Input() users!: RawUser[];
+export class usersDropdownComponent {
+  initialOptions = [
+    { id: 1, first_name: "Kayla", last_name: "Lopez" },
+    { id: 2, first_name: "Tina", last_name: "Patrick" },
+    { id: 3, first_name: "Brittany", last_name: "Bradford" },
+    { id: 4, first_name: "Lisa", last_name: "Thomas" },
+    { id: 5, first_name: "Danielle", last_name: "Taylor" },
+  ];
+  result: any;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private userByIdService: UserByIdService, private cdRef: ChangeDetectorRef) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if ('users' in changes) {
-      this.cdr.detectChanges();
+  onUserSelectionChange(event: any): void {
+    const selectedUser = event.value;
+    if (selectedUser) {
+      const selectedUserId = selectedUser.id;
+      this.userByIdService.setSelectedUserId(selectedUserId);
+      console.log('id', selectedUserId);
+      this.userByIdService.getUserById(selectedUserId).subscribe(
+        (result) => {
+          console.log('Fetched user:', result);
+          this.result = result;
+          this.cdRef.detectChanges();
+        }
+      );
     }
   }
 }
