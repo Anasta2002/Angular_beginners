@@ -1,4 +1,5 @@
-import {ChangeDetectorRef, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Input, OnChanges, SimpleChanges, Component} from '@angular/core';
+import {RawUser} from "../../models";
 
 @Component({
   selector: 'app-users-dropdown',
@@ -6,11 +7,8 @@ import {ChangeDetectorRef, Input, OnChanges, SimpleChanges} from '@angular/core'
   styleUrls: ['./usersDropdown.component.css'],
 })
 
-interface User {
-
-}
 export class usersDropdownComponent implements OnChanges  {
-  @Input() users!: User[];
+  @Input() users!: RawUser[];
 
   constructor(private cdr: ChangeDetectorRef) {}
 

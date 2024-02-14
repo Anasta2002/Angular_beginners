@@ -4,21 +4,21 @@
 
 <app-users-dropdown [users]="data"></app-users-dropdown>
 
-<div>
-  <h2>Questions</h2>
-  <div class="user-cards">
-    <div *ngFor="let user of data; let i = index" class="user-card" id="user-{{i}}">
-      <div class="user-info">
-        <div class="user-avatar">
-          <img src="{{ user.profile_picture }}" alt="{{ user.first_name }} {{ user.last_name }}" />
-        </div>
-        <div class="user-details">
-          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-          <p>{{ user.job }}</p>
-          <p>{{ user.city }}, {{ user.state }}, {{ user.country }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div #bottomMarker></div>
-</div>
+<!--<div>-->
+<!--  <h2>Questions</h2>-->
+<!--  <div class="user-cards">-->
+<!--    <div *ngFor="let user of data; let i = index" class="user-card" id="user-{{i}}">-->
+<!--      <div class="user-info">-->
+<!--        <div class="user-avatar">-->
+<!--          <img src="{{ user.profile_picture }}" alt="{{ user.first_name }} {{ user.last_name }}" />-->
+<!--        </div>-->
+<!--        <div class="user-details">-->
+<!--          <h3>{{ user.first_name }} {{ user.last_name }}</h3>-->
+<!--          <p>{{ user.job }}</p>-->
+<!--          <p>{{ user.city }}, {{ user.state }}, {{ user.country }}</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div #bottomMarker></div>-->
+<!--</div>-->
