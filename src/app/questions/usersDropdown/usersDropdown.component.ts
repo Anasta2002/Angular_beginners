@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { UserByIdService } from "../../services/user-by-id.service";
 
 @Component({
@@ -7,7 +7,7 @@ import { UserByIdService } from "../../services/user-by-id.service";
   styleUrls: ['./usersDropdown.component.css'],
 })
 
-export class usersDropdownComponent {
+export class usersDropdownComponent implements OnInit {
   initialOptions = [
     { id: 1, first_name: "Kayla", last_name: "Lopez" },
     { id: 2, first_name: "Tina", last_name: "Patrick" },
@@ -18,6 +18,13 @@ export class usersDropdownComponent {
   result: any;
 
   constructor(private userByIdService: UserByIdService, private cdRef: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    const storedUserId = sessionStorage.getItem('selectedUserId');
+    if (storedUserId) {
+      this.loadUserById(parseInt(storedUserId, 10));
+    }
+  }
 
   onUserSelectionChange(event: any): void {
     const selectedUser = event.value;
@@ -32,6 +39,20 @@ export class usersDropdownComponent {
           this.cdRef.detectChanges();
         }
       );
+      sessionStorage.setItem('selectedUserId', selectedUserId.toString());
+
+      this.loadUserById(selectedUserId);
     }
   }
+
+  private loadUserById(userId: number): void {
+    this.userByIdService.setSelectedUserId(userId);
+    this.userByIdService.getUserById(userId).subscribe(
+      (result) => {
+        this.result = result;
+        this.cdRef.detectChanges();
+      }
+    );
+  }
+
 }

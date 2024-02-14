@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {QuestionsComponent} from "./questions.component";
-import {PaginationService} from "../services/pagination.service";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
@@ -24,7 +23,7 @@ import {usersDropdownComponent} from "./usersDropdown/usersDropdown.component";
     MatInputModule,
     FormsModule,
   ],
-  providers: [PaginationService],
+  providers: [],
   exports: [QuestionsComponent]
 })
 export class QuestionsModule { }
