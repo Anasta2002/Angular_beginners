@@ -16,13 +16,16 @@ export class usersDropdownComponent implements OnInit {
     { id: 5, first_name: "Danielle", last_name: "Taylor" },
   ];
   result: any;
+  selectedUser: any;
 
   constructor(private userByIdService: UserByIdService, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     const storedUserId = sessionStorage.getItem('selectedUserId');
     if (storedUserId) {
-      this.loadUserById(parseInt(storedUserId, 10));
+      const userId = parseInt(storedUserId, 10);
+      this.loadUserById(userId);
+      this.selectedUser = this.initialOptions.find(user => user.id === userId);
     }
   }
 
@@ -39,9 +42,9 @@ export class usersDropdownComponent implements OnInit {
           this.cdRef.detectChanges();
         }
       );
-      sessionStorage.setItem('selectedUserId', selectedUserId.toString());
-
+      sessionStorage.setItem('selectedUser', JSON.stringify(selectedUser));
       this.loadUserById(selectedUserId);
+      this.selectedUser = selectedUser;
     }
   }
 
@@ -54,5 +57,4 @@ export class usersDropdownComponent implements OnInit {
       }
     );
   }
-
 }

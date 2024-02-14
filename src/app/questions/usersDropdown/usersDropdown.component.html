@@ -1,22 +1,11 @@
 <h4>User's names</h4>
 <mat-form-field>
   <mat-label>Users</mat-label>
-  <mat-select (selectionChange)="onUserSelectionChange($event)">
+  <mat-select [(ngModel)]="selectedUser" (selectionChange)="onUserSelectionChange($event)">
     <mat-option *ngFor="let user of initialOptions" [value]="user">
       {{ user.first_name }} {{ user.last_name }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
-<div class="user-card" *ngIf="result">
-  <div class="user-info">
-    <div class="user-avatar">
-      <img src="{{ result.user.profile_picture }}" alt="{{ result.user.first_name }} {{ result.user.last_name }}" />
-    </div>
-    <div class="user-details">
-      <h3>{{ result.user.first_name }} {{ result.user.last_name }}</h3>
-      <p>{{ result.user.job }}</p>
-      <p>{{ result.user.city }}, {{ result.user.state }}, {{ result.user.country }}</p>
-    </div>
-  </div>
-</div>
+<app-user-card [result]="result"></app-user-card>

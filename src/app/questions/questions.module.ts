@@ -8,6 +8,7 @@ import {MatOption, MatSelect, MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {usersDropdownComponent} from "./usersDropdown/usersDropdown.component";
+import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
 
 @NgModule({
   declarations: [QuestionsComponent, usersDropdownComponent],
@@ -22,6 +23,7 @@ import {usersDropdownComponent} from "./usersDropdown/usersDropdown.component";
     MatSelectModule,
     MatInputModule,
     FormsModule,
+    UserCardComponent,
   ],
   providers: [],
   exports: [QuestionsComponent]

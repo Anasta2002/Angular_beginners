@@ -1,0 +1,14 @@
+<div class="user-card" *ngIf="result">
+  <div class="user-info">
+    <div class="user-avatar">
+      <img src="{{ result.user.profile_picture }}" alt="{{ result.user.first_name }} {{ result.user.last_name }}" />
+    </div>
+    <div class="user-details">
+      <h3>User: {{ result.user.first_name }} {{ result.user.last_name }}</h3>
+      <p>Job: {{ result.user.job }}</p>
+      <p>Location: {{ result.user.city }}, {{ result.user.state }}, {{ result.user.country }}</p>
+      <p>Phone: {{ result.user.phone }}</p>
+      <p>Location: {{ result.user.city }}, {{ result.user.state }}, {{ result.user.country }}</p>
+    </div>
+  </div>
+</div>
