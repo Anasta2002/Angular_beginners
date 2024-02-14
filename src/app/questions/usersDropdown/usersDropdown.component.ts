@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Input, OnChanges, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-users-dropdown',
@@ -6,13 +6,16 @@ import {ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges} from '@an
   styleUrls: ['./usersDropdown.component.css'],
 })
 
+interface User {
+
+}
 export class usersDropdownComponent implements OnChanges  {
-  @Input() usersNames!: string[];
+  @Input() users!: User[];
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if ('usersNames' in changes) {
+    if ('users' in changes) {
       this.cdr.detectChanges();
     }
   }

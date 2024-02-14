@@ -43,8 +43,8 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
     this.observeBottomMarker();
 
-    this.usersNames = this.data.map(user => user.first_name + ' ' + user.last_name);
-    console.log('user_transfer', this.usersNames)
+    // this.usersNames = this.data.map(user => user.first_name + ' ' + user.last_name);
+    // console.log('user_transfer', this.usersNames)
   }
 
   ngOnDestroy() {
