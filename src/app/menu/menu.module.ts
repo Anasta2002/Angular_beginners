@@ -8,7 +8,6 @@ import {CommonModule} from "@angular/common";
 @NgModule({
     declarations: [MenuComponent],
     imports: [MatSlideToggleModule, MatIcon, RouterLink, CommonModule],
-    providers: [],
     exports: [
         MenuComponent
     ],

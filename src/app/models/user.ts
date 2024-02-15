@@ -36,6 +36,9 @@ export class User {
     return `${this.user.city}, ${this.user.state}, ${this.user.country}`;
   }
 
+  get id(): number {
+    return this.user.id;
+  }
   get avatar(): string {
     return this.user.profile_picture;
   }

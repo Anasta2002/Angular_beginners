@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import * as http from "http";
+import {PaginatedUser} from "../models";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,10 @@ import {HttpClient} from "@angular/common/http";
 export class UsersService {
   constructor(private http: HttpClient) { }
 
-  getAllUsers(): Observable<any> {
-    return this.http.get<any>(`https://api.slingacademy.com/v1/sample-data/users?offset=10&limit=25`);
+  getAllUsers(params: {offset?: number, limit?: number, search?: string} = {offset: 0, limit: 25, search: '' }): Observable<PaginatedUser> {
+    return this.http.get<PaginatedUser>(`https://api.slingacademy.com/v1/sample-data/users`, {
+      params: new HttpParams().set('offset', params.offset ?? 0).set('limit', params.limit ?? 25).set('search', params.search ?? '')
+    });
   }
 }
+

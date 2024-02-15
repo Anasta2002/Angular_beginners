@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AddFormComponent],
   imports: [ReactiveFormsModule],
-  providers: [],
   exports: [AddFormComponent],
 })
 export class AddFormModule {}

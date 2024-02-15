@@ -1,11 +1,14 @@
-<h4>User's names</h4>
-<mat-form-field (click)="getInitialOptions()">
-  <mat-label>Users</mat-label>
-  <mat-select [(ngModel)]="selectedUser" (selectionChange)="onUserSelectionChange($event)">
-    <mat-option *ngFor="let user of initialOptions" [value]="user">
-      {{ user.first_name }} {{ user.last_name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
-<app-user-card [result]="result"></app-user-card>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>User's names</mat-label>
+    <input type="text"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option.id">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

@@ -1,7 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { UsersService } from "../../services/users.service";
-import { RawUser } from "../../models";
+import {RawUser, User} from "../../models";
 import {UserByIdService} from "../../services/user-by-id.service";
+import {FormControl} from "@angular/forms";
+import {debounceTime, map, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-users-dropdown',
@@ -13,13 +15,26 @@ export class usersDropdownComponent implements OnInit {
   result: any;
   selectedUser: any;
   hasFetchedData: boolean = false;
+  myControl = new FormControl('');
+  filteredOptions$ = this.myControl.valueChanges.pipe(
+    debounceTime(300),
+    switchMap((search) => this.usersService.getAllUsers({
+      search: search ?? '',
+      limit: 25,
+    })),
+    map(response => response.users.map(user => new User(user)))
+  )
 
   constructor(
     private usersService: UsersService,
     private userByIdService: UserByIdService,
     private cdRef: ChangeDetectorRef) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.myControl.valueChanges.subscribe((value) => {
+
+    })
+  }
 
   getInitialOptions() {
     if (!this.hasFetchedData) {
@@ -57,44 +72,3 @@ export class usersDropdownComponent implements OnInit {
     sessionStorage.setItem('initialOptions', JSON.stringify(this.initialOptions));
   }
 }
-
-
-
-
-
-// ngOnInit(): void {
-//   const storedUserId = sessionStorage.getItem('selectedUserId');
-//   if (storedUserId) {
-//     const userId = parseInt(storedUserId, 10);
-//     this.loadUserById(userId);
-//   }
-// }
-
-// onUserSelectionChange(event: any): void {
-//   const selectedUser = event.value;
-//   if (selectedUser) {
-//     const selectedUserId = selectedUser.id;
-//     this.userByIdService.setSelectedUserId(selectedUserId);
-//     console.log('id', selectedUserId);
-//     this.userByIdService.getUserById(selectedUserId).subscribe(
-//       (result) => {
-//         console.log('Fetched user:', result);
-//         this.result = result;
-//         this.cdRef.detectChanges();
-//       },
-//     );
-//     sessionStorage.setItem('selectedUser', JSON.stringify(selectedUser));
-//     this.loadUserById(selectedUserId);
-//     this.selectedUser = selectedUser;
-//   }
-// }
-//
-// private loadUserById(userId: number): void {
-//   this.userByIdService.setSelectedUserId(userId);
-//   this.userByIdService.getUserById(userId).subscribe(
-//     (result) => {
-//       this.result = result;
-//       this.cdRef.detectChanges();
-//     }
-//   );
-// }

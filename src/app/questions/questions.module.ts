@@ -6,11 +6,10 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatOption, MatSelect, MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {usersDropdownComponent} from "./usersDropdown/usersDropdown.component";
 import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
-import {UsersService} from "../services/users.service";
-import {UserByIdService} from "../services/user-by-id.service";
+import {MatAutocomplete, MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [QuestionsComponent, usersDropdownComponent],
@@ -26,8 +25,13 @@ import {UserByIdService} from "../services/user-by-id.service";
     MatInputModule,
     FormsModule,
     UserCardComponent,
+    MatAutocomplete,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
   ],
-  providers: [UsersService, UserByIdService],
   exports: [QuestionsComponent]
 })
 export class QuestionsModule { }
