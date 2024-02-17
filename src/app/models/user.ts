@@ -18,7 +18,7 @@ export interface RawUser {
   longitude: number;
 }
 
-export interface PaginatedUser {
+export interface PaginatedUsers {
   limit: number;
   message: string;
   offset: number;
