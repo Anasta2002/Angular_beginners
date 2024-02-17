@@ -18,7 +18,7 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
   templateUrl: './usersDropdown.component.html',
   styleUrls: ['./usersDropdown.component.css'],
 })
-export class usersDropdownComponent implements OnInit, AfterViewInit {
+export class UsersDropdownComponent implements OnInit, AfterViewInit {
   initialOptions: any = [];
   result: any;
   selectedUser: any;

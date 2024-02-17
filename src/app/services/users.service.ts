@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, from, map, of, shareReplay, switchMap, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import * as http from 'http';
-import { PaginatedUsers, RawUser, User } from '../models';
+import { PaginatedUser } from '../models';
 import { StorageItem } from '../models/storage-item';
 
 @Injectable({
@@ -11,7 +10,7 @@ import { StorageItem } from '../models/storage-item';
 export class UsersService {
   constructor(private http: HttpClient) {}
 
-  private storageOptions = new StorageItem<PaginatedUsers>('options');
+  private storageOptions = new StorageItem<PaginatedUser>('options');
 
   getUsers(
     params: {
@@ -25,14 +24,14 @@ export class UsersService {
       search: '',
       getCached: false,
     }
-  ): Observable<PaginatedUsers> {
+  ): Observable<PaginatedUser> {
     const savedOptions = this.storageOptions.get();
     if (params.getCached && savedOptions) {
       return of(savedOptions);
     }
 
     return this.http
-      .get<PaginatedUsers>(
+      .get<PaginatedUser>(
         `https://api.slingacademy.com/v1/sample-data/users`,
         {
           params: new HttpParams()
