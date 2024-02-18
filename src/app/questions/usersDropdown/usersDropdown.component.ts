@@ -1,13 +1,11 @@
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { UsersService } from '../../services/users.service';
-import { RawUser, User } from '../../models';
-import { UserByIdService } from '../../services/user-by-id.service';
+import { User } from '../../models';
 import { FormControl } from '@angular/forms';
 import { Subject, map, pairwise, startWith, switchMap, tap } from 'rxjs';
 import { StorageItem } from '../../models/storage-item';
@@ -19,10 +17,6 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
   styleUrls: ['./usersDropdown.component.css'],
 })
 export class UsersDropdownComponent implements OnInit, AfterViewInit {
-  initialOptions: any = [];
-  result: any;
-  selectedUser: any;
-  hasFetchedData: boolean = false;
   searchControl = new FormControl('');
   onClick$: Subject<string> = new Subject();
 
@@ -57,8 +51,6 @@ export class UsersDropdownComponent implements OnInit, AfterViewInit {
 
   constructor(
     private usersService: UsersService,
-    private userByIdService: UserByIdService,
-    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {}
@@ -77,40 +69,5 @@ export class UsersDropdownComponent implements OnInit, AfterViewInit {
 
   click() {
     this.onClick$.next(this.searchControl.value ?? '');
-  }
-
-  getInitialOptions() {
-    if (!this.hasFetchedData) {
-      this.usersService.getUsers().subscribe((response) => {
-        this.initialOptions = response.users.map((user: RawUser) => ({
-          id: user.id,
-          first_name: user.first_name,
-          last_name: user.last_name,
-        }));
-        this.setInitialDataToSessionStorage();
-        this.hasFetchedData = true;
-      });
-    }
-  }
-
-  onUserSelectionChange(event: any): void {
-    const selectedUser = event.value;
-    if (selectedUser) {
-      const selectedUserId = selectedUser.id;
-      this.userByIdService.setSelectedUserId(selectedUserId);
-      this.userByIdService.getUserById(selectedUserId).subscribe((result) => {
-        this.result = result;
-        this.cdRef.detectChanges();
-      });
-      sessionStorage.setItem('selectedUser', JSON.stringify(selectedUser));
-      this.selectedUser = selectedUser;
-    }
-  }
-
-  setInitialDataToSessionStorage() {
-    sessionStorage.setItem(
-      'initialOptions',
-      JSON.stringify(this.initialOptions)
-    );
   }
 }

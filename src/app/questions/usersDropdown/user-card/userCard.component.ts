@@ -7,7 +7,7 @@ import {NgIf} from "@angular/common";
   imports: [
     NgIf
   ],
-  templateUrl: './user-card.component.html',
+  templateUrl: './userCard.component.html',
   styleUrl: './user-card.component.css'
 })
 export class UserCardComponent {
