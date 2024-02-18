@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {QuestionsComponent} from "./questions.component";
-import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
-import {MatOption, MatSelect, MatSelectModule} from "@angular/material/select";
-import {MatInputModule} from "@angular/material/input";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {usersDropdownComponent} from "./usersDropdown/usersDropdown.component";
-import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
-import {MatAutocomplete, MatAutocompleteModule} from "@angular/material/autocomplete";
+import { QuestionsComponent } from './questions.component';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import {
+  MatOption,
+  MatSelect,
+  MatSelectModule,
+} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersDropdownComponent } from './users-dropdown/users-dropdown.component';
+import { UserCardComponent } from './users-dropdown/user-card/user-card.component';
+import {
+  MatAutocomplete,
+  MatAutocompleteModule,
+} from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [QuestionsComponent, usersDropdownComponent],
+  declarations: [QuestionsComponent, UsersDropdownComponent, UserCardComponent],
   imports: [
     CommonModule,
     MatProgressSpinner,
@@ -24,14 +32,14 @@ import {MatAutocomplete, MatAutocompleteModule} from "@angular/material/autocomp
     MatSelectModule,
     MatInputModule,
     FormsModule,
-    UserCardComponent,
     MatAutocomplete,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
   ],
-  exports: [QuestionsComponent]
+  exports: [QuestionsComponent],
 })
-export class QuestionsModule { }
+export class QuestionsModule {}

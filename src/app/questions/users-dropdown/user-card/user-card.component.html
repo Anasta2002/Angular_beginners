@@ -1,0 +1,14 @@
+<div class="user-card" *ngIf="user">
+  <div class="user-info">
+    <div class="user-avatar">
+      <img [src]="user.avatar" [alt]="user.name" />
+    </div>
+    <div class="user-details">
+      <h3>User: {{ user.name }}</h3>
+      <p>Job: {{ user.id }}</p>
+      <p>Location: {{ user.from }}</p>
+      <p>Phone: {{ user.phone }}</p>
+      <p>Email: {{ user.email }}</p>
+    </div>
+  </div>
+</div>

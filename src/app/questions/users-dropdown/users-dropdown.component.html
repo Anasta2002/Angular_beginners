@@ -1,0 +1,28 @@
+<form class="example-form">
+  <mat-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="fromSudan"
+    >From Sudan</mat-checkbox
+  >
+
+  <mat-form-field class="example-full-width">
+    <mat-label>User's names</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="searchControl"
+      [matAutocomplete]="auto"
+      (click)="click()"
+      #trigger="matAutocompleteTrigger"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let user of users$ | async"
+        [value]="user.name"
+        (onSelectionChange)="selectUser(user.rawUser, trigger, auto)"
+      >
+        {{ user.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<app-user-card *ngIf="user" [user]="user"></app-user-card>
