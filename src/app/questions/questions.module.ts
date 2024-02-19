@@ -18,6 +18,7 @@ import {
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
 import {UsersDropdownComponent} from "./usersDropdown/users-dropdown.component";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent],
@@ -39,6 +40,7 @@ import {UsersDropdownComponent} from "./usersDropdown/users-dropdown.component";
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    HttpClientModule,
   ],
   exports: [QuestionsComponent],
 })

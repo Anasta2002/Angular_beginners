@@ -1,7 +1,7 @@
 export class StorageItem<T> {
   constructor(private key: string) {}
 
-  save(item: T) {
+  save(item: T): void {
     sessionStorage.setItem(this.key, JSON.stringify(item));
   }
 
@@ -15,5 +15,10 @@ export class StorageItem<T> {
     }
 
     return JSON.parse(item) as T;
+  }
+
+  delete(): void {
+    sessionStorage.removeItem(this.key);
+    console.log('deleted')
   }
 }

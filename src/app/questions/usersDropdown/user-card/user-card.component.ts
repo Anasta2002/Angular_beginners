@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import { User } from '../../../models';
 
 @Component({
@@ -9,4 +9,9 @@ import { User } from '../../../models';
 })
 export class UserCardComponent {
   @Input() user: User | undefined;
+  @Output() deleteCard = new EventEmitter<void>();
+
+  deleteCardEmited() {
+    this.deleteCard.emit();
+  }
 }

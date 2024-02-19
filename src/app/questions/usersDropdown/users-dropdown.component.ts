@@ -1,23 +1,10 @@
-import {
-  Component,
-  ViewChild,
-  inject,
-} from '@angular/core';
-import { UsersService } from '../../services/users.service';
-import { RawUser, User } from '../../models';
-import { FormControl } from '@angular/forms';
-import {
-  Subject,
-  debounceTime,
-  map,
-  merge,
-  switchMap,
-} from 'rxjs';
-import { StorageItem } from '../../models/storage-item';
-import {
-  MatAutocomplete,
-  MatAutocompleteTrigger,
-} from '@angular/material/autocomplete';
+import {Component, inject, ViewChild} from '@angular/core';
+import {UsersService} from '../../services/users.service';
+import {RawUser, User} from '../../models';
+import {FormControl} from '@angular/forms';
+import {debounceTime, filter, map, merge, Subject, switchMap,} from 'rxjs';
+import {StorageItem} from '../../models/storage-item';
+import {MatAutocomplete, MatAutocompleteTrigger,} from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-users-dropdown',
@@ -27,7 +14,6 @@ import {
 export class UsersDropdownComponent {
   searchControl = new FormControl('');
   onClick$: Subject<string> = new Subject();
-
   fromSudan = false;
 
   private savedUser = new StorageItem<RawUser>('selected-user');
@@ -83,5 +69,9 @@ export class UsersDropdownComponent {
       item.deselect();
     });
     this.searchControl.reset('');
+  }
+
+  deleteCard() {
+    this.savedUser.delete()
   }
 }
