@@ -2,7 +2,7 @@ import {Component, inject, ViewChild} from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {RawUser, User} from '../../models';
 import {FormControl} from '@angular/forms';
-import {debounceTime, filter, map, merge, Subject, switchMap,} from 'rxjs';
+import {debounceTime, map, merge, Subject, switchMap,} from 'rxjs';
 import {StorageItem} from '../../models/storage-item';
 import {MatAutocomplete, MatAutocompleteTrigger,} from '@angular/material/autocomplete';
 
