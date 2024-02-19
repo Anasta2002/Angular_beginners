@@ -18,7 +18,7 @@ export interface RawUser {
   longitude: number;
 }
 
-export interface PaginatedUser {
+export interface PaginatedUsers {
   limit: number;
   message: string;
   offset: number;
@@ -29,23 +29,36 @@ export interface PaginatedUser {
 
 export class User {
   get name(): string {
-    return `${this.user.first_name} ${this.user.last_name}`;
+    return `${this.rawUser.first_name} ${this.rawUser.last_name}`;
   }
 
   get from(): string {
-    return `${this.user.city}, ${this.user.state}, ${this.user.country}`;
+    return `${this.rawUser.city}, ${this.rawUser.state}, ${this.rawUser.country}`;
   }
 
   get id(): number {
-    return this.user.id;
+    return this.rawUser.id;
   }
+
   get avatar(): string {
-    return this.user.profile_picture;
+    return this.rawUser.profile_picture;
   }
 
   get job(): string {
-    return this.user.job;
+    return this.rawUser.job;
   }
 
-  constructor(private user: RawUser) {}
+  get phone(): string {
+    return this.rawUser.phone;
+  }
+
+  get email(): string {
+    return this.rawUser.email;
+  }
+
+  get fromSudan(): boolean {
+    return this.rawUser.country === 'Sudan';
+  }
+
+  constructor(public rawUser: RawUser) {}
 }
