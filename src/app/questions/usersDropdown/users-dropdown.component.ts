@@ -14,7 +14,6 @@ import {MatAutocomplete, MatAutocompleteTrigger,} from '@angular/material/autoco
 export class UsersDropdownComponent {
   searchControl = new FormControl('');
   onClick$: Subject<string> = new Subject();
-  fromSudan = false;
 
   private savedUser = new StorageItem<RawUser>('selected-user');
   private usersService = inject(UsersService);
@@ -40,10 +39,6 @@ export class UsersDropdownComponent {
     ),
     map((response) => {
       const users = response.users.map((user) => new User(user));
-
-      if (this.fromSudan) {
-        return users.filter((user) => user.fromSudan);
-      }
 
       return users;
     })

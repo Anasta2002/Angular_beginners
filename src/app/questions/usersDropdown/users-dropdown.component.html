@@ -13,7 +13,6 @@
     />
 
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="fromSudan">From Sudan</mat-checkbox>
       <mat-option
         *ngFor="let user of users$ | async"
         [value]="user.name"
