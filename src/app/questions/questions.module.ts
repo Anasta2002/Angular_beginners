@@ -41,6 +41,7 @@ import {HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     MatCheckboxModule,
     HttpClientModule,
+    MatSelectModule,
   ],
   exports: [QuestionsComponent],
 })

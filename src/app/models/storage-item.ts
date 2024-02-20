@@ -19,6 +19,5 @@ export class StorageItem<T> {
 
   delete(): void {
     sessionStorage.removeItem(this.key);
-    console.log('deleted')
   }
 }

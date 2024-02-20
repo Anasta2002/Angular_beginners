@@ -1,20 +1,22 @@
 import {Component, inject, ViewChild} from '@angular/core';
 import {UsersService} from '../../services/users.service';
-import {RawUser, User} from '../../models';
+import {PaginatedUsers, RawUser, User} from '../../models';
 import {FormControl} from '@angular/forms';
 import {debounceTime, map, merge, Subject, switchMap,} from 'rxjs';
 import {StorageItem} from '../../models/storage-item';
-import {MatAutocomplete, MatAutocompleteTrigger,} from '@angular/material/autocomplete';
+import {MatSelect, MatSelectChange, MatSelectTrigger} from "@angular/material/select";
+
+interface ngOnInit {
+}
 
 @Component({
   selector: 'app-users-dropdown',
   templateUrl: './users-dropdown.component.html',
   styleUrls: ['./users-dropdown.component.css'],
 })
-export class UsersDropdownComponent {
+export class UsersDropdownComponent implements ngOnInit{
   searchControl = new FormControl('');
   onClick$: Subject<string> = new Subject();
-  fromSudan = false;
 
   private savedUser = new StorageItem<RawUser>('selected-user');
   private usersService = inject(UsersService);
@@ -25,8 +27,8 @@ export class UsersDropdownComponent {
     return saved ? new User(saved) : null;
   }
 
-  @ViewChild(MatAutocompleteTrigger, { read: MatAutocompleteTrigger })
-  inputAutoComplete: MatAutocompleteTrigger | undefined;
+  @ViewChild(MatSelectTrigger, { read: MatSelectTrigger })
+  inputAutoComplete: MatSelectTrigger | undefined;
 
   users$ = merge(
     this.searchControl.valueChanges.pipe(debounceTime(300)),
@@ -39,12 +41,9 @@ export class UsersDropdownComponent {
       })
     ),
     map((response) => {
+      console.log('Users recieved:', response);
       const users = response.users.map((user) => new User(user));
-
-      if (this.fromSudan) {
-        return users.filter((user) => user.fromSudan);
-      }
-
+      console.log('Users emitted:', users);
       return users;
     })
   );
@@ -57,18 +56,13 @@ export class UsersDropdownComponent {
     this.onClick$.next(this.searchControl.value ?? '');
   }
 
-  selectUser(
-    user: RawUser,
-    trigger: MatAutocompleteTrigger,
-    auto: MatAutocomplete
-  ) {
-    this.searchControl.setValue('', { emitEvent: false });
-    this.savedUser.save(user);
+  selectUser(user: RawUser | undefined, event: MatSelectChange, auto: MatSelect) {
+    console.log('Selecting user:', user);
+    if (!user) {
+      return;
+    }
 
-    auto.options.forEach((item) => {
-      item.deselect();
-    });
-    this.searchControl.reset('');
+    this.savedUser.save(user);
   }
 
   deleteCard() {

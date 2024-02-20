@@ -1,29 +1,38 @@
-<form class="example-form">
-<!--  <mat-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="fromSudan">From Sudan</mat-checkbox>-->
+<!--<form class="example-form">-->
+<!--  <mat-form-field class="example-full-width">-->
+<!--    <mat-label>User's names</mat-label>-->
+<!--    <input-->
+<!--      type="text"-->
+<!--      matInput-->
+<!--      [formControl]="searchControl"-->
+<!--      [matAutocomplete]="auto"-->
+<!--      (click)="click()"-->
+<!--      #trigger="matAutocompleteTrigger"-->
+<!--    />-->
+<!--    <mat-autocomplete #auto="matAutocomplete">-->
+<!--      <mat-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="fromSudan">From Sudan</mat-checkbox>-->
+<!--      <mat-option-->
+<!--        *ngFor="let user of users$ | async"-->
+<!--        [value]="user.name"-->
+<!--        (onSelectionChange)="selectUser(user.rawUser, trigger, auto)"-->
+<!--      >-->
 
-  <mat-form-field class="example-full-width">
-    <mat-label>User's names</mat-label>
-    <input
-      type="text"
-      matInput
-      [formControl]="searchControl"
-      [matAutocomplete]="auto"
-      (click)="click()"
-      #trigger="matAutocompleteTrigger"
-    />
+<!--        {{ user.name }}-->
+<!--      </mat-option>-->
+<!--    </mat-autocomplete>-->
+<!--  </mat-form-field>-->
+<!--</form>-->
+<!--<app-user-card *ngIf="user" [user]="user" (deleteCard)="deleteCard()"></app-user-card>-->
 
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="fromSudan">From Sudan</mat-checkbox>
-      <mat-option
-        *ngFor="let user of users$ | async"
-        [value]="user.name"
-        (onSelectionChange)="selectUser(user.rawUser, trigger, auto)"
-      >
+<mat-form-field appearance="fill">
+  <mat-label>Choose or type...</mat-label>
+  <input matInput (click)="click()" [formControl]="searchControl" />
+  <mat-select [value]="user?.name" #auto (selectionChange)="selectUser(user?.rawUser, $event, auto)">
+<!--    <mat-option *ngFor="let user of users$ | async" [value]="user.name">-->
+<!--      {{ user.name }}-->
+<!--    </mat-option>-->
+  </mat-select>
+</mat-form-field>
 
-        {{ user.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
 
 <app-user-card *ngIf="user" [user]="user" (deleteCard)="deleteCard()"></app-user-card>
