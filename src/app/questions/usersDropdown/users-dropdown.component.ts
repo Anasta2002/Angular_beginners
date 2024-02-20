@@ -1,20 +1,23 @@
-import {Component, inject, ViewChild} from '@angular/core';
-import {UsersService} from '../../services/users.service';
-import {PaginatedUsers, RawUser, User} from '../../models';
-import {FormControl} from '@angular/forms';
-import {debounceTime, map, merge, Subject, switchMap,} from 'rxjs';
-import {StorageItem} from '../../models/storage-item';
-import {MatSelect, MatSelectChange, MatSelectTrigger} from "@angular/material/select";
+import { Component, inject, ViewChild } from '@angular/core';
+import { UsersService } from '../../services/users.service';
+import { PaginatedUsers, RawUser, User } from '../../models';
+import { FormControl } from '@angular/forms';
+import { debounceTime, map, merge, Subject, switchMap } from 'rxjs';
+import { StorageItem } from '../../models/storage-item';
+import {
+  MatSelect,
+  MatSelectChange,
+  MatSelectTrigger,
+} from '@angular/material/select';
 
-interface ngOnInit {
-}
+interface ngOnInit {}
 
 @Component({
   selector: 'app-users-dropdown',
   templateUrl: './users-dropdown.component.html',
   styleUrls: ['./users-dropdown.component.css'],
 })
-export class UsersDropdownComponent implements ngOnInit{
+export class UsersDropdownComponent implements ngOnInit {
   searchControl = new FormControl('');
   onClick$: Subject<string> = new Subject();
 
@@ -56,16 +59,16 @@ export class UsersDropdownComponent implements ngOnInit{
     this.onClick$.next(this.searchControl.value ?? '');
   }
 
-  selectUser(user: RawUser | undefined, event: MatSelectChange, auto: MatSelect) {
+  selectUser(user: User) {
     console.log('Selecting user:', user);
     if (!user) {
       return;
     }
 
-    this.savedUser.save(user);
+    this.savedUser.save(user.rawUser);
   }
 
   deleteCard() {
-    this.savedUser.delete()
+    this.savedUser.delete();
   }
 }

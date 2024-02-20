@@ -27,12 +27,19 @@
 <mat-form-field appearance="fill">
   <mat-label>Choose or type...</mat-label>
   <input matInput (click)="click()" [formControl]="searchControl" />
-  <mat-select [value]="user?.name" #auto (selectionChange)="selectUser(user?.rawUser, $event, auto)">
-<!--    <mat-option *ngFor="let user of users$ | async" [value]="user.name">-->
-<!--      {{ user.name }}-->
-<!--    </mat-option>-->
+  <mat-select [value]="user?.name" #auto>
+    <mat-option
+      *ngFor="let user of users$ | async"
+      [value]="user.name"
+      (onSelectionChange)="selectUser(user)"
+    >
+      {{ user.name }}
+    </mat-option>
   </mat-select>
 </mat-form-field>
 
-
-<app-user-card *ngIf="user" [user]="user" (deleteCard)="deleteCard()"></app-user-card>
+<app-user-card
+  *ngIf="user"
+  [user]="user"
+  (deleteCard)="deleteCard()"
+></app-user-card>
