@@ -1,41 +1,11 @@
-<!--<form class="example-form">-->
-<!--  <mat-form-field class="example-full-width">-->
-<!--    <mat-label>User's names</mat-label>-->
-<!--    <input-->
-<!--      type="text"-->
-<!--      matInput-->
-<!--      [formControl]="searchControl"-->
-<!--      [matAutocomplete]="auto"-->
-<!--      (click)="click()"-->
-<!--      #trigger="matAutocompleteTrigger"-->
-<!--    />-->
-<!--    <mat-autocomplete #auto="matAutocomplete">-->
-<!--      <mat-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="fromSudan">From Sudan</mat-checkbox>-->
-<!--      <mat-option-->
-<!--        *ngFor="let user of users$ | async"-->
-<!--        [value]="user.name"-->
-<!--        (onSelectionChange)="selectUser(user.rawUser, trigger, auto)"-->
-<!--      >-->
-
-<!--        {{ user.name }}-->
-<!--      </mat-option>-->
-<!--    </mat-autocomplete>-->
-<!--  </mat-form-field>-->
-<!--</form>-->
-<!--<app-user-card *ngIf="user" [user]="user" (deleteCard)="deleteCard()"></app-user-card>-->
-
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" class="wrapper">
   <mat-label>Choose or type...</mat-label>
-  <input matInput (click)="click()" [formControl]="searchControl" />
   <mat-select [value]="user?.name" #auto>
-    <mat-option
-      *ngFor="let user of users$ | async"
-      [value]="user.name"
-      (onSelectionChange)="selectUser(user)"
-    >
+    <mat-option *ngFor="let user of users$ | async" [value]="user.name" (onSelectionChange)="selectUser(user)">
       {{ user.name }}
     </mat-option>
   </mat-select>
+  <input matInput (click)="click()" [formControl]="searchControl" class="hidden-input">
 </mat-form-field>
 
 <app-user-card

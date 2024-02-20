@@ -10,7 +10,6 @@ export class StorageItem<T> {
 
     if (!item) {
       console.warn(`there is no item ${this.key} in storage`);
-
       return null;
     }
 
