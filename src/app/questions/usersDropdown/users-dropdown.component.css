@@ -1,7 +1,22 @@
-.example-form {
+.mat-mdc-form-field {
   width: 50%;
 }
 
-.mat-mdc-form-field {
+.wrapper {
+  position: relative;
+  margin: 40px;
   width: 50%;
+}
+
+.arrow-icon {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 0 6px;
+  border-color: #000 transparent transparent transparent;
+  cursor: pointer;
 }

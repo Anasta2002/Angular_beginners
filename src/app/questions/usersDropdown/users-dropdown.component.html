@@ -1,7 +1,6 @@
 <form class="example-form">
-<!--  <mat-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="fromSudan">From Sudan</mat-checkbox>-->
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="wrapper">
     <mat-label>User's names</mat-label>
     <input
       type="text"
@@ -11,7 +10,7 @@
       (click)="click()"
       #trigger="matAutocompleteTrigger"
     />
-
+    <div class="arrow-icon"></div>
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option
         *ngFor="let user of users$ | async"
