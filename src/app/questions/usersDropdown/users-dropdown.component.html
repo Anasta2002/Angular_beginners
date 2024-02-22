@@ -10,14 +10,17 @@
       (click)="click()"
       #trigger="matAutocompleteTrigger"
     />
-    <div class="arrow-icon"></div>
+    <div class="button-container">
+      <div class="arrow-button">
+        <i class="material-icons">keyboard_arrow_down</i>
+      </div>
+    </div>
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option
         *ngFor="let user of users$ | async"
         [value]="user.name"
         (onSelectionChange)="selectUser(user.rawUser, trigger, auto)"
       >
-
         {{ user.name }}
       </mat-option>
     </mat-autocomplete>
