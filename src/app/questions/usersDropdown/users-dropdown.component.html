@@ -11,17 +11,12 @@
       #trigger="matAutocompleteTrigger"
     />
     <div class="arrow-icon"></div>
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option
-        *ngFor="let user of users$ | async"
-        [value]="user.name"
-        (onSelectionChange)="selectUser(user.rawUser, trigger, auto)"
-      >
-
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+      <mat-option *ngFor="let user of loadedUsers" [value]="user.name">
         {{ user.name }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </form>
 
-<app-user-card *ngIf="user" [user]="user" (deleteCard)="deleteCard()"></app-user-card>
+<!--<app-user-card *ngIf="user" [user]="user" (deleteCard)="deleteCard()"></app-user-card>-->
