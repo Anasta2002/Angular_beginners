@@ -1,5 +1,4 @@
 <form class="example-form">
-
   <mat-form-field class="wrapper">
     <mat-label>User's names</mat-label>
     <input
@@ -7,7 +6,7 @@
       matInput
       [formControl]="searchControl"
       [matAutocomplete]="auto"
-      (click)="click()"
+      (click)="click($event)"
       #trigger="matAutocompleteTrigger"
     />
     <div class="button-container">
@@ -19,7 +18,7 @@
       <mat-option
         *ngFor="let user of users$ | async"
         [value]="user.name"
-        (onSelectionChange)="selectUser(user.rawUser, trigger, auto)"
+        (onSelectionChange)="selectUser(user.rawUser)"
       >
         {{ user.name }}
       </mat-option>
@@ -27,4 +26,8 @@
   </mat-form-field>
 </form>
 
-<app-user-card *ngIf="user" [user]="user" (deleteCard)="deleteCard()"></app-user-card>
+<app-user-card
+  *ngIf="user"
+  [user]="user"
+  (deleteCard)="deleteCard()"
+></app-user-card>
