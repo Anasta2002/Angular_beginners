@@ -61,6 +61,11 @@ mat-label {
   display: flex;
 }
 
-mat-mdc-text-field-wrapper{
+mat-mdc-text-field-wrapper {
   padding-right: 0;
+}
+
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
 }

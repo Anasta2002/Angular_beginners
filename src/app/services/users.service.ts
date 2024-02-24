@@ -1,17 +1,21 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, of, tap, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { PaginatedUsers, RawUser, User } from '../models';
+import { PaginatedUsers } from '../models';
 import { StorageItem } from '../models/storage-item';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  private http = inject(HttpClient);
+  private _http = inject(HttpClient);
+  private _cache = new StorageItem<PaginatedUsers>('users');
+  private _lastSearch: string | null = null;
+  private _loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  private cache = new StorageItem<PaginatedUsers>('users');
-  private lastSearch: string | null = null;
+  get loading$(): Observable<boolean> {
+    return this._loading$.asObservable();
+  }
 
   getUsers(
     params: {
@@ -24,12 +28,15 @@ export class UsersService {
       search: '',
     }
   ): Observable<PaginatedUsers> {
-    const cache = this.cache.get();
-
-    if (this.lastSearch === params.search && cache) {
+    const cache = this._cache.get();
+    
+    if (this._lastSearch === params.search && cache) {
       return of(cache);
     }
-    return this.http
+    
+    this._loading$.next(true)
+    
+    return this._http
       .get<PaginatedUsers>(
         `https://api.slingacademy.com/v1/sample-data/users`,
         {
@@ -41,8 +48,9 @@ export class UsersService {
       )
       .pipe(
         tap((users) => {
-          this.lastSearch = params.search ?? null;
-          return this.cache.save(users);
+          this._lastSearch = params.search ?? null;
+          this._cache.save(users);
+          this._loading$.next(false)
         })
       );
   }

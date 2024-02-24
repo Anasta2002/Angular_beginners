@@ -1,5 +1,5 @@
 <form class="example-form">
-  <mat-form-field class="wrapper">
+  <mat-form-field class="wrapper" [class.loading]="loading$ | async">
     <mat-label>User's names</mat-label>
     <input
       type="text"
@@ -19,6 +19,7 @@
         *ngFor="let user of users$ | async"
         [value]="user.name"
         (onSelectionChange)="selectUser(user.rawUser)"
+        [class.loading]="loading$ | async"
       >
         {{ user.name }}
       </mat-option>

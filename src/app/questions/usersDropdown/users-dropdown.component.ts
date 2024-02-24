@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { RawUser, User } from '../../models';
 import { FormControl } from '@angular/forms';
-import { debounceTime, map, merge, of, Subject, switchMap } from 'rxjs';
+import { debounceTime, map, merge, of, Subject, switchMap, BehaviorSubject, Observable } from 'rxjs';
 import { StorageItem } from '../../models/storage-item';
 
 @Component({
@@ -12,14 +12,14 @@ import { StorageItem } from '../../models/storage-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersDropdownComponent {
-  searchControl = new FormControl('');
-
-  onClick$: Subject<string> = new Subject();
-  search$: Subject<string> = new Subject();
-
   private savedUser = new StorageItem<RawUser>('selected-user');
   private usersService = inject(UsersService);
 
+  searchControl = new FormControl('');
+  onClick$: Subject<string> = new Subject();
+  search$: Subject<string> = new Subject();
+  loading$: Observable<boolean> = this.usersService.loading$;
+  
   get user(): User | null {
     const saved = this.savedUser.get();
     return saved ? new User(saved) : null;
