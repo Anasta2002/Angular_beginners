@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { RawUser, User } from '../../models';
 import { FormControl } from '@angular/forms';
@@ -11,15 +16,17 @@ import { StorageItem } from '../../models/storage-item';
   styleUrls: ['./users-dropdown.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersDropdownComponent {
-  private savedUser = new StorageItem<RawUser>('selected-user');
-  private usersService = inject(UsersService);
 
+export class UsersDropdownComponent implements OnInit {
   searchControl = new FormControl('');
   onClick$: Subject<string> = new Subject();
   search$: Subject<string> = new Subject();
+
+  private savedUser = new StorageItem<RawUser>('selected-user');
+  private usersService = inject(UsersService);
+
   loading$: Observable<boolean> = this.usersService.loading$;
-  
+
   get user(): User | null {
     const saved = this.savedUser.get();
     return saved ? new User(saved) : null;
@@ -42,8 +49,16 @@ export class UsersDropdownComponent {
     })
   );
 
-  click(event: any) {
-    event.target.select();
+  ngOnInit(): void {
+    const savedUser = this.user;
+
+    if (savedUser) {
+      this.searchControl.setValue(savedUser.name);
+    }
+  }
+
+  click(event: MouseEvent) {
+    (event.target as HTMLInputElement).select();
 
     this.onClick$.next(this.searchControl.value ?? '');
   }
