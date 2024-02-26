@@ -10,7 +10,6 @@ export class StorageItem<T> {
 
     if (!item) {
       console.warn(`there is no item ${this.key} in storage`);
-
       return null;
     }
 
@@ -19,6 +18,5 @@ export class StorageItem<T> {
 
   delete(): void {
     sessionStorage.removeItem(this.key);
-    console.log('deleted')
   }
 }

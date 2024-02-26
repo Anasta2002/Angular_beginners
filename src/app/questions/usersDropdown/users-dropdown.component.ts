@@ -20,7 +20,6 @@ import { StorageItem } from '../../models/storage-item';
 export class UsersDropdownComponent implements OnInit {
   searchControl = new FormControl('');
   onClick$: Subject<string> = new Subject();
-  search$: Subject<string> = new Subject();
 
   private savedUser = new StorageItem<RawUser>('selected-user');
   private usersService = inject(UsersService);
