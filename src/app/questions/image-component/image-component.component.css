@@ -1,0 +1,61 @@
+.image-component-wrapper {
+  display: flex;
+  border: 2px solid #555555;
+  width: 400px;
+  border-radius: 5px;
+  height: 250px;
+}
+
+.left-div {
+  width: 200px;
+  padding: 10px;
+}
+
+.right-div {
+  width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.right-div label {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #CCCCCC;
+  cursor: pointer;
+}
+
+.right-div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.right-div input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.inputs-filling {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs-filling i {
+  padding: 0 0 15px;
+}
+
+.hover-buttons {
+  cursor: pointer;
+}

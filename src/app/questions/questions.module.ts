@@ -20,30 +20,32 @@ import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
 import {UsersDropdownComponent} from "./usersDropdown/users-dropdown.component";
 import {HttpClientModule} from "@angular/common/http";
 import {MatIcon} from "@angular/material/icon";
+import {ImageComponentComponent} from "./image-component/image-component.component";
 
 @NgModule({
   declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent],
-    imports: [
-        CommonModule,
-        MatProgressSpinner,
-        MatPaginator,
-        MatFormField,
-        MatSelect,
-        MatOption,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatInputModule,
-        FormsModule,
-        MatAutocomplete,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
-        MatCheckboxModule,
-        HttpClientModule,
-        MatIcon,
-    ],
+  imports: [
+    CommonModule,
+    MatProgressSpinner,
+    MatPaginator,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
+    MatAutocomplete,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    HttpClientModule,
+    MatIcon,
+    ImageComponentComponent,
+  ],
   exports: [QuestionsComponent],
 })
 export class QuestionsModule {}
