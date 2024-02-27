@@ -8,9 +8,11 @@ import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {MatOption, MatSelect, MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {DropdownComponent} from "./dropdown/dropdown.component";
+import {ImageUploadComponent} from "./image-upload/image-upload.component";
+import {AsyncPipe, NgForOf} from "@angular/common";
 
 @NgModule({
-  declarations: [HomeComponent, DropdownComponent],
+  declarations: [HomeComponent, DropdownComponent, ImageUploadComponent],
   imports: [FormsModule,
     AddFormModule,
     ItemsModule,
@@ -20,7 +22,7 @@ import {DropdownComponent} from "./dropdown/dropdown.component";
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    FormsModule,
+    FormsModule, AsyncPipe, NgForOf,
   ],
   exports: [HomeComponent, DropdownComponent],
   providers: [HomeService],

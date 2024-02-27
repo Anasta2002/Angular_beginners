@@ -17,3 +17,8 @@
   width: 1200px;
   margin: 0 auto;
 }
+
+.image-upload-wrapper {
+  display: flex;
+  justify-content: center;
+}
