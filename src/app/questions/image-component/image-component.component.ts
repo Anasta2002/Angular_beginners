@@ -1,26 +1,25 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {AsyncPipe, NgIf} from "@angular/common";
-import {FileUploadService} from "../../services/upload.service";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-image-component',
-  standalone: true,
-  imports: [
-    NgIf,
-    AsyncPipe,
-    ReactiveFormsModule
-  ],
   templateUrl: './image-component.component.html',
-  styleUrl: './image-component.component.css'
+  styleUrls: ['./image-component.component.css'],
 })
-export class ImageComponentComponent {
+export class ImageComponentComponent implements AfterViewInit {
   status: 'initial' | 'uploading' | 'success' | 'fail' = 'initial';
   file: File | null = null;
   imageUrl: string | ArrayBuffer | null | undefined = null;
 
-  @ViewChild('uploadedImage') uploadedImage: ElementRef | undefined;
+  imageForm: FormGroup;
+
+  @ViewChild('imgInput') imgInput: ElementRef | undefined;
+
+  constructor(private fb: FormBuilder) {
+    this.imageForm = this.fb.group({
+      img: [''],
+    });
+  }
 
   ngAfterViewInit(): void {
     this.updateImage();
@@ -45,20 +44,26 @@ export class ImageComponentComponent {
   }
 
   private updateImage(): void {
-    if (this.uploadedImage && this.imageUrl !== null) {
-      this.uploadedImage.nativeElement.src = this.imageUrl;
+    if (this.imgInput) {
+      this.imgInput.nativeElement.src = this.imageUrl || '';
     }
   }
 
   onUploadAnother(): void {
+    console.log('Upload Another called');
     this.status = 'initial';
     this.file = null;
     this.imageUrl = null;
+    this.imageForm.reset(); // Reset the form
+    console.log('Form reset:', this.imageForm.value);
   }
 
   onDelete(): void {
+    console.log('Delete called');
     this.status = 'initial';
     this.file = null;
     this.imageUrl = null;
+    this.imageForm.reset(); // Reset the form
+    console.log('Form reset:', this.imageForm.value);
   }
 }

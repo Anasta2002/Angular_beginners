@@ -23,7 +23,7 @@ import {MatIcon} from "@angular/material/icon";
 import {ImageComponentComponent} from "./image-component/image-component.component";
 
 @NgModule({
-  declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent],
+  declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent, ImageComponentComponent],
   imports: [
     CommonModule,
     MatProgressSpinner,
@@ -44,7 +44,6 @@ import {ImageComponentComponent} from "./image-component/image-component.compone
     MatCheckboxModule,
     HttpClientModule,
     MatIcon,
-    ImageComponentComponent,
   ],
   exports: [QuestionsComponent],
 })

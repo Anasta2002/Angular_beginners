@@ -1,20 +1,21 @@
-<div class="image-component-wrapper">
-  <div class="left-div">
-    <p>FOTO</p>
-    <p>Bitte ein Portrait-Foto, auf dem das Gesicht des Mitarbeitenden gut zu erkennen ist, hochladen oder in das Feld reinziehen.</p>
+<form [formGroup]="imageForm">
+  <div class="image-component-wrapper">
+    <div class="left-div">
+      <p>FOTO</p>
+      <p>Bitte ein Portrait-Foto, auf dem das Gesicht des Mitarbeitenden gut zu erkennen ist, hochladen oder in das Feld reinziehen.</p>
+    </div>
+    <div class="right-div">
+      <label for="img" class="inputs-filling">
+        <img #imgInput *ngIf="imageUrl !== null" [src]="imageUrl" alt="Uploaded Image">
+        <i class="material-icons">upload_file</i>
+        <span>FOTO HOCHLADEN</span>
+      </label>
+      <input type="file" id="img" name="img" (change)="onChange($event)">
+    </div>
   </div>
-  <div class="right-div">
-    <label for="img" class="inputs-filling">
-      <img *ngIf="imageUrl !== null" [src]="imageUrl" alt="Uploaded Image">
-      <i class="material-icons">upload_file</i>
-      <span>FOTO HOCHLADEN</span>
-    </label>
-    <input type="file" id="img" name="img" (change)="onChange($event)">
 
+  <div *ngIf="imageUrl !== null" class="hover-buttons">
+    <i class="material-icons" (click)="onUploadAnother()">upload_file</i>
+    <i class="material-icons" (click)="onDelete()">delete_outline</i>
   </div>
-</div>
-
-<div *ngIf="imageUrl !== null" class="hover-buttons">
-  <i class="material-icons" (click)="onUploadAnother()">upload_file</i>
-  <i class="material-icons" (click)="onDelete()">delete_outline</i>
-</div>
+</form>
