@@ -1,24 +1,34 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ImagePreviewModalComponent } from './image-preview-modal/image-preview-modal.component';
 
 @Component({
   selector: 'app-image-component',
-  templateUrl: './image-component.component.html',
-  styleUrls: ['./image-component.component.css'],
+  templateUrl: './image-upload.component.html',
+  styleUrls: ['./image-upload.component.css'],
 })
-export class ImageComponentComponent implements AfterViewInit {
+export class ImageUploadComponent {
   status: 'initial' | 'uploading' | 'success' | 'fail' = 'initial';
   file: File | null = null;
   imageUrl: string | ArrayBuffer | null | undefined = null;
+  previewWindow: boolean = false;
 
   imageForm: FormGroup;
 
   @ViewChild('imgInput') imgInput: ElementRef | undefined;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private dialog: MatDialog) {
     this.imageForm = this.fb.group({
       img: [''],
     });
+  }
+
+  openPreviewModal(): void {
+    const dialogRef = this.dialog.open(ImagePreviewModalComponent, {
+      data: { imageUrl: this.imageUrl },
+    });
+
   }
 
   ngAfterViewInit(): void {
@@ -27,6 +37,7 @@ export class ImageComponentComponent implements AfterViewInit {
 
   onChange(event: any): void {
     const file: File = event.target.files[0];
+    this.previewWindow = true;
 
     if (file) {
       this.status = 'initial';
@@ -50,20 +61,19 @@ export class ImageComponentComponent implements AfterViewInit {
   }
 
   onUploadAnother(): void {
-    console.log('Upload Another called');
     this.status = 'initial';
     this.file = null;
     this.imageUrl = null;
-    this.imageForm.reset(); // Reset the form
-    console.log('Form reset:', this.imageForm.value);
   }
 
   onDelete(): void {
-    console.log('Delete called');
     this.status = 'initial';
     this.file = null;
     this.imageUrl = null;
-    this.imageForm.reset(); // Reset the form
-    console.log('Form reset:', this.imageForm.value);
+    this.imageForm.reset();
+  }
+
+  closeModalWindow() {
+    this.previewWindow = false;
   }
 }

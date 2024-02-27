@@ -20,10 +20,13 @@ import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
 import {UsersDropdownComponent} from "./usersDropdown/users-dropdown.component";
 import {HttpClientModule} from "@angular/common/http";
 import {MatIcon} from "@angular/material/icon";
-import {ImageComponentComponent} from "./image-component/image-component.component";
+import {MatProgressBar} from "@angular/material/progress-bar";
+import {ImageUploadComponent} from "./image-component/image-upload.component";
+import {ImagePreviewModalComponent} from "./image-component/image-preview-modal/image-preview-modal.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
-  declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent, ImageComponentComponent],
+  declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent, ImageUploadComponent, ImagePreviewModalComponent],
   imports: [
     CommonModule,
     MatProgressSpinner,
@@ -44,6 +47,8 @@ import {ImageComponentComponent} from "./image-component/image-component.compone
     MatCheckboxModule,
     HttpClientModule,
     MatIcon,
+    MatProgressBar,
+    MatDialogModule,
   ],
   exports: [QuestionsComponent],
 })
