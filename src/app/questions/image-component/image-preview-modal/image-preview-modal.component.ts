@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-image-preview-modal',
@@ -17,12 +17,8 @@ export class ImagePreviewModalComponent {
     this.closeModalWindow.emit();
   }
 
+  // not working ((
   onModalClick(): void {
     this.closeModalWindow.emit();
-  }
-
-  setImageUrl(imageUrl: string): void {
-    this.imageUrl = imageUrl;
-    this.cdr.detectChanges();
   }
 }

@@ -1,3 +1,7 @@
+.upload_wrapper {
+  margin: 40px;
+}
+
 .image-component-wrapper {
   display: flex;
   border: 2px solid #555555;
