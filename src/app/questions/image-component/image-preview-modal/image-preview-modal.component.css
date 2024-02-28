@@ -10,6 +10,7 @@
   width: 50%;
   height: 40%;
   overflow: scroll;
+  z-index: 999;
 }
 
 .image-preview-modal img {
