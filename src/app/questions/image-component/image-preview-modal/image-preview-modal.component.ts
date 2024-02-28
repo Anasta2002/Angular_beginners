@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-image-preview-modal',

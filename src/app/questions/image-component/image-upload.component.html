@@ -14,10 +14,11 @@
     </div>
   </div>
 
-  <div *ngIf="previewWindow" class="hover-buttons">
+  <div *ngIf="file" class="hover-buttons">
     <i class="material-icons" (click)="onUploadAnother()">upload_file</i>
     <i class="material-icons" (click)="onDelete()">delete_outline</i>
   </div>
+
 
   <app-image-preview-modal *ngIf="previewWindow" [imageUrl]="imageUrl" (closeModalWindow)="closeModalWindow()"></app-image-preview-modal>
 </form>

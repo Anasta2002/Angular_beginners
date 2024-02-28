@@ -29,6 +29,9 @@ export class ImageUploadComponent {
       data: { imageUrl: this.imageUrl },
     });
 
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle any actions after the modal is closed if needed
+    });
   }
 
   ngAfterViewInit(): void {

@@ -4,7 +4,7 @@
 
 .image-component-wrapper {
   display: flex;
-  border: 2px solid #555555;
+  border: 2px solid olivedrab;
   width: 400px;
   border-radius: 5px;
   height: 250px;
@@ -61,14 +61,18 @@
 }
 
 .hover-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+}
+
+.hover-buttons i {
   cursor: pointer;
-}
-
-.large-preview {
-  margin-top: 20px; /* Add some spacing */
-}
-
-.large-preview img {
-  max-width: 100%; /* Ensure the image doesn't exceed its container */
-  height: auto; /* Maintain the aspect ratio */
+  width: 70px;
+  height: 30px;
+  border: 1px solid olivedrab;
+  border-radius: 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
 }
