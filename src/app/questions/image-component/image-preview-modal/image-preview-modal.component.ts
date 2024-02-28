@@ -12,11 +12,14 @@ export class ImagePreviewModalComponent {
   @Input() imageUrl: string | ArrayBuffer | null | undefined = null;
   @Output() closeModalWindow = new EventEmitter<void>();
   @Input() imageChangeEvent!: any;
-
+  cropImgPreview: SafeUrl | undefined;
 
 
   // constructor(private cdr: ChangeDetectorRef,  private sanitizer: DomSanitizer) {}
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private sanitizer: DomSanitizer
+  ) {}
 
   onCloseClick(event: Event): void {
     event.stopPropagation();
@@ -27,5 +30,23 @@ export class ImagePreviewModalComponent {
 
   onModalClick(): void {
     this.closeModalWindow.emit();
+  }
+
+  cropImg(e:ImageCroppedEvent) {
+    if (e.objectUrl != null) {
+      this.cropImgPreview = this.sanitizer.bypassSecurityTrustUrl(e.objectUrl);
+    }
+  }
+
+  imgLoad() {
+
+  }
+
+  initCropper() {
+
+  }
+
+  imgFailed() {
+
   }
 }

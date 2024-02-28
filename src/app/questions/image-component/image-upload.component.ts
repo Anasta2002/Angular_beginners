@@ -16,7 +16,7 @@ export class ImageUploadComponent {
   imageUrl: string | ArrayBuffer | null | undefined = null;
   previewWindow: boolean = false;
   imageChangeEvent: any = '';
-  cropImgPreview: SafeUrl | undefined;
+  // cropImgPreview: SafeUrl | undefined;
   imageForm: FormGroup;
 
   @ViewChild('imgInput') imgInput: ElementRef | undefined;
@@ -45,22 +45,22 @@ export class ImageUploadComponent {
 
   onChange(event: any): void {
     this.imageChangeEvent = event
-    // const file: File = event.target.files[0];
-    // this.previewWindow = true;
-    //
-    // if (file) {
-    //   this.status = 'initial';
-    //   this.file = file;
-    //
-    //   const reader = new FileReader();
-    //
-    //   reader.onload = (e) => {
-    //     this.imageUrl = e.target?.result;
-    //     this.updateImage();
-    //   };
-    //
-    //   reader.readAsDataURL(file);
-    // }
+    const file: File = event.target.files[0];
+    this.previewWindow = true;
+
+    if (file) {
+      this.status = 'initial';
+      this.file = file;
+
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.imageUrl = e.target?.result;
+        this.updateImage();
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
 
   private updateImage(): void {
@@ -86,21 +86,10 @@ export class ImageUploadComponent {
     this.previewWindow = false;
   }
 
-  cropImg(e:ImageCroppedEvent) {
-    if (e.objectUrl != null) {
-      this.cropImgPreview = this.sanitizer.bypassSecurityTrustUrl(e.objectUrl);
-    }
-  }
+  // cropImg(e:ImageCroppedEvent) {
+  //   if (e.objectUrl != null) {
+  //     this.cropImgPreview = this.sanitizer.bypassSecurityTrustUrl(e.objectUrl);
+  //   }
+  // }
 
-  imgLoad() {
-
-  }
-
-  initCropper() {
-
-  }
-
-  imgFailed() {
-
-  }
 }
