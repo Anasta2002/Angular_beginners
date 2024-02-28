@@ -85,11 +85,4 @@ export class ImageUploadComponent {
   closeModalWindow() {
     this.previewWindow = false;
   }
-
-  // cropImg(e:ImageCroppedEvent) {
-  //   if (e.objectUrl != null) {
-  //     this.cropImgPreview = this.sanitizer.bypassSecurityTrustUrl(e.objectUrl);
-  //   }
-  // }
-
 }

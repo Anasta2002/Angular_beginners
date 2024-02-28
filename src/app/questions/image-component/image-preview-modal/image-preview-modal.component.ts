@@ -14,8 +14,6 @@ export class ImagePreviewModalComponent {
   @Input() imageChangeEvent!: any;
   cropImgPreview: SafeUrl | undefined;
 
-
-  // constructor(private cdr: ChangeDetectorRef,  private sanitizer: DomSanitizer) {}
   constructor(
     private cdr: ChangeDetectorRef,
     private sanitizer: DomSanitizer
