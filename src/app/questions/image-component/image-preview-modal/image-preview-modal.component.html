@@ -1,4 +1,4 @@
-<div class="image-preview-modal" (click)="onModalClick()">
+<div class="image-preview-modal">
 <!--  <img [src]="imageUrl" alt="Uploaded Image">-->
   <image-cropper
     [imageChangedEvent]="imageChangeEvent"
@@ -13,7 +13,7 @@
   </image-cropper>
 
   <span class="close-button" (click)="onCloseClick($event)">X</span>
-  <button>Dieses Foto hochladen</button>
+  <button (click)="onModalClick()">Dieses Foto hochladen</button>
 </div>
 
 <div class="cropped-image-preview">
