@@ -1,4 +1,6 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ImageCroppedEvent} from "ngx-image-cropper";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-image-preview-modal',
@@ -9,7 +11,11 @@ import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angula
 export class ImagePreviewModalComponent {
   @Input() imageUrl: string | ArrayBuffer | null | undefined = null;
   @Output() closeModalWindow = new EventEmitter<void>();
+  @Input() imageChangeEvent!: any;
 
+
+
+  // constructor(private cdr: ChangeDetectorRef,  private sanitizer: DomSanitizer) {}
   constructor(private cdr: ChangeDetectorRef) {}
 
   onCloseClick(event: Event): void {
@@ -17,7 +23,8 @@ export class ImagePreviewModalComponent {
     this.closeModalWindow.emit();
   }
 
-  // not working ((
+
+
   onModalClick(): void {
     this.closeModalWindow.emit();
   }

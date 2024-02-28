@@ -24,6 +24,7 @@ import {MatProgressBar} from "@angular/material/progress-bar";
 import {ImageUploadComponent} from "./image-component/image-upload.component";
 import {ImagePreviewModalComponent} from "./image-component/image-preview-modal/image-preview-modal.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import {ImageCropperModule} from "ngx-image-cropper";
 
 @NgModule({
   declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent, ImageUploadComponent, ImagePreviewModalComponent],
@@ -49,6 +50,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatIcon,
     MatProgressBar,
     MatDialogModule,
+    ImageCropperModule,
   ],
   exports: [QuestionsComponent],
 })
