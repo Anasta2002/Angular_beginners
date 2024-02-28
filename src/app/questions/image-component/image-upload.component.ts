@@ -25,13 +25,11 @@ export class ImageUploadComponent {
   }
 
   openPreviewModal(): void {
-    const dialogRef = this.dialog.open(ImagePreviewModalComponent, {
-      data: { imageUrl: this.imageUrl },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // Handle any actions after the modal is closed if needed
-    });
+    if (this.imageUrl) {
+      const dialogRef = this.dialog.open(ImagePreviewModalComponent, {
+        data: { imageUrl: this.imageUrl },
+      });
+    }
   }
 
   ngAfterViewInit(): void {
@@ -56,6 +54,7 @@ export class ImageUploadComponent {
       reader.readAsDataURL(file);
     }
   }
+
 
   private updateImage(): void {
     if (this.imgInput) {

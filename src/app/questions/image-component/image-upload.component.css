@@ -70,9 +70,17 @@
   cursor: pointer;
   width: 70px;
   height: 30px;
-  border: 1px solid olivedrab;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 10px 0;
   display: flex;
   justify-content: center;
+  background-color: olivedrab;
+  color: white;
+  padding: 3px 10px;
+  border: none;
+}
+
+.hover-buttons i:hover {
+  background-color: #8FA64C;
+  transform: scale(1.1);
 }
