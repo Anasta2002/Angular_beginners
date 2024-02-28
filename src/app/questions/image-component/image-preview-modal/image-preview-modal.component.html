@@ -1,22 +1,23 @@
-<div class="image-preview-modal" (click)="onModalClick()">
-<!--  <img [src]="imageUrl" alt="Uploaded Image">-->
+<div class="image-preview-modal">
+  <!--  <img [src]="imageUrl" alt="Uploaded Image">-->
   <image-cropper
     [imageChangedEvent]="imageChangeEvent"
-    [aspectRatio]="4/4"
+    [aspectRatio]="4 / 4"
     [maintainAspectRatio]="true"
-    [resizeToWidth]="200" format="png"
+    [resizeToWidth]="200"
+    format="png"
     [resizeToHeight]="250"
     (imageCropped)="cropImg($event)"
     (imageLoaded)="imgLoad()"
     (cropperReady)="initCropper()"
-    (loadImageFailed)="imgFailed()">
+    (loadImageFailed)="imgFailed()"
+  >
   </image-cropper>
 
   <span class="close-button" (click)="onCloseClick($event)">X</span>
-  <button>Dieses Foto hochladen</button>
+  <button (click)="onModalClick()">Dieses Foto hochladen</button>
 </div>
 
 <div class="cropped-image-preview">
   <img [src]="cropImgPreview" alt="image" />
 </div>
-
