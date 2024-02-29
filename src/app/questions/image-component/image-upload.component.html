@@ -1,36 +1,42 @@
-<form [formGroup]="imageForm" class="upload_wrapper">
-  <div class="image-component-wrapper">
-    <div class="left-div">
-      <p>FOTO</p>
-      <p>Bitte ein Portrait-Foto, auf dem das Gesicht des Mitarbeitenden gut zu erkennen ist, hochladen oder in das Feld reinziehen.</p>
-    </div>
-    <div class="right-div">
-      <label for="img" class="inputs-filling">
-        <img #imgInput *ngIf="imageUrl !== null" [src]="imageUrl" alt="Uploaded Image" (click)="openPreviewModal()">
-        <i class="material-icons">upload_file</i>
-        <span>FOTO HOCHLADEN</span>
-      </label>
-      <input type="file" id="img" name="img" (change)="onChange($event)">
-    </div>
+<div class="image-component-wrapper">
+  <div class="left-div">
+    <p>FOTO</p>
+    <p>
+      Bitte ein Portrait-Foto, auf dem das Gesicht des Mitarbeitenden gut zu
+      erkennen ist, hochladen oder in das Feld reinziehen.
+    </p>
   </div>
-
-  <div *ngIf="file" class="hover-buttons">
-    <i class="material-icons" (click)="onUploadAnother()">upload_file</i>
-    <i class="material-icons" (click)="onDelete()">delete_outline</i>
+  <div class="right-div">
+    <label for="img" class="inputs-filling">
+      <img
+        *ngIf="showImage"
+        [src]="imageUrl"
+        alt="Uploaded Image"
+        (click)="imageClick()"
+      />
+      <i class="material-icons">upload_file</i>
+      <span>FOTO HOCHLADEN</span>
+    </label>
+    <input
+      #imageUploadInput
+      type="file"
+      id="img"
+      name="img"
+      (change)="onFileChange($event)"
+      (click)="onFileClick($event)"
+    />
   </div>
-  <app-image-preview-modal *ngIf="previewWindow" [imageUrl]="imageUrl" (closeModalWindow)="closeModalWindow()" [imageChangeEvent]="imageChangeEvent"></app-image-preview-modal>
-</form>
+</div>
 
+<div *ngIf="file" class="hover-buttons">
+  <i class="material-icons" (click)="openUpload()">upload_file</i>
+  <i class="material-icons" (click)="onDelete()">delete_outline</i>
+</div>
 
-
-<!--<image-cropper-->
-<!--  [imageChangedEvent]="imageChangeEvent"-->
-<!--  [aspectRatio]="4/4"-->
-<!--  [maintainAspectRatio]="true"-->
-<!--  [resizeToWidth]="256" format="png"-->
-<!--  (imageCropped)="cropImg($event)"-->
-<!--  (imageLoaded)="imgLoad()"-->
-<!--  (cropperReady)="initCropper()"-->
-<!--  (loadImageFailed)="imgFailed()">-->
-<!--</image-cropper>-->
-<!--<img [src]="cropImgPreview" alt="image" />-->
+<app-image-preview-modal
+  *ngIf="previewWindow"
+  [imageUrl]="imageUrl"
+  (closeModalWindow)="closeModalWindow()"
+  (onSubmit)="submitCrop($event)"
+  [imageChangeEvent]="imageChangeEvent"
+></app-image-preview-modal>

@@ -1,95 +1,68 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ImagePreviewModalComponent } from './image-preview-modal/image-preview-modal.component';
-import {ImageCroppedEvent} from "ngx-image-cropper";
-import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-image-component',
   templateUrl: './image-upload.component.html',
   styleUrls: ['./image-upload.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageUploadComponent {
-  status: 'initial' | 'uploading' | 'success' | 'fail' = 'initial';
   file: File | null = null;
   imageUrl: string | ArrayBuffer | null | undefined = null;
   previewWindow: boolean = false;
-  imageChangeEvent: any = '';
-  // cropImgPreview: SafeUrl | undefined;
-  imageForm: FormGroup;
+  imageChangeEvent: Event | undefined;
 
-  @ViewChild('imgInput') imgInput: ElementRef | undefined;
+  @ViewChild('imageUploadInput') private imageUploadInput:
+    | ElementRef<HTMLInputElement>
+    | undefined;
 
-  constructor(
-    private fb: FormBuilder,
-    private dialog: MatDialog,
-    private sanitizer: DomSanitizer
-  ) {
-    this.imageForm = this.fb.group({
-      img: [''],
-    });
+  get showImage(): boolean {
+    return this.imageUrl !== null;
   }
 
-  openPreviewModal(): void {
-    if (this.imageUrl) {
-      const dialogRef = this.dialog.open(ImagePreviewModalComponent, {
-        data: { imageUrl: this.imageUrl },
-      });
+  imageClick(): void {
+    this.showCropModal(!!this.imageUrl);
+  }
+
+  submitCrop(url: SafeUrl | undefined): void {
+    if (url) {
+      this.imageUrl = url as string;
+      this.showCropModal(false);
     }
   }
 
-  ngAfterViewInit(): void {
-    this.updateImage();
-  }
+  onFileChange(e: Event): void {
+    this.imageChangeEvent = e;
 
-  onChange(event: any): void {
-    this.imageChangeEvent = event
-    const file: File = event.target.files[0];
     this.previewWindow = true;
-
-    if (file) {
-      this.status = 'initial';
-      this.file = file;
-
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        this.imageUrl = e.target?.result;
-        this.updateImage();
-      };
-
-      reader.readAsDataURL(file);
-    }
   }
 
-  private updateImage(): void {
-    if (this.imgInput) {
-      this.imgInput.nativeElement.src = this.imageUrl || '';
-    }
+  onFileClick(event: any): void {
+    event.target.value = '';
   }
 
-  onUploadAnother(): void {
-    this.status = 'initial';
-    this.file = null;
-    this.imageUrl = null;
+  openUpload() {
+    if (this.imageUploadInput) {
+      this.imageUploadInput.nativeElement.click();
+    }
   }
 
   onDelete(): void {
-    this.status = 'initial';
     this.file = null;
     this.imageUrl = null;
-    this.imageForm.reset();
   }
 
   closeModalWindow() {
-    this.previewWindow = false;
+    this.showCropModal(false);
   }
 
-  // cropImg(e:ImageCroppedEvent) {
-  //   if (e.objectUrl != null) {
-  //     this.cropImgPreview = this.sanitizer.bypassSecurityTrustUrl(e.objectUrl);
-  //   }
-  // }
-
+  showCropModal(show: boolean): void {
+    this.previewWindow = show;
+  }
 }

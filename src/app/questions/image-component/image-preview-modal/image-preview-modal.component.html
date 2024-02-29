@@ -1,5 +1,4 @@
 <div class="image-preview-modal">
-  <!--  <img [src]="imageUrl" alt="Uploaded Image">-->
   <image-cropper
     [imageChangedEvent]="imageChangeEvent"
     [aspectRatio]="4 / 4"
@@ -8,14 +7,11 @@
     format="png"
     [resizeToHeight]="250"
     (imageCropped)="cropImg($event)"
-    (imageLoaded)="imgLoad()"
-    (cropperReady)="initCropper()"
-    (loadImageFailed)="imgFailed()"
   >
   </image-cropper>
 
   <span class="close-button" (click)="onCloseClick($event)">X</span>
-  <button (click)="onModalClick()">Dieses Foto hochladen</button>
+  <button (click)="submit()">Dieses Foto hochladen</button>
 </div>
 
 <div class="cropped-image-preview">
