@@ -9,14 +9,11 @@
     </div>
     <div class="right-div">
       <label for="img" class="inputs-filling">
-        <img
-          *ngIf="showImage"
-          [src]="imageUrl"
-          alt="Uploaded Image"
-          (click)="imageClick()"
-        />
-        <i class="material-icons">upload_file</i>
-        <span>FOTO HOCHLADEN</span>
+        <img *ngIf="showImage" [src]="imageUrl" alt="Uploaded Image" />
+        <ng-container *ngIf="!showImage">
+          <i class="material-icons">upload_file</i>
+          <span>FOTO HOCHLADEN</span>
+        </ng-container>
       </label>
       <input
         #imageUploadInput
@@ -31,13 +28,13 @@
 
   <div *ngIf="imageUrl" class="hover-buttons">
     <i class="material-icons" (click)="openUpload()">upload_file</i>
-    <i class="material-icons" (click)="onDelete()">delete_outline</i>
+    <i class="material-icons" (click)="delete()">delete_outline</i>
   </div>
 
   <app-image-preview-modal
-    *ngIf="previewWindow"
+    *ngIf="showPreviewWindow"
     [imageUrl]="imageUrl"
-    (closeModalWindow)="closeModalWindow()"
+    (closeModalWindow)="closeModal()"
     (onSubmit)="submitCrop($event)"
     [imageChangeEvent]="imageChangeEvent"
   ></app-image-preview-modal>

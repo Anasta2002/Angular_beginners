@@ -6,11 +6,11 @@
     [resizeToWidth]="200"
     format="png"
     [resizeToHeight]="250"
-    (imageCropped)="cropImg($event)"
+    (imageCropped)="cropImage($event)"
   >
   </image-cropper>
 
-  <span class="close-button" (click)="onCloseClick($event)">X</span>
+  <span class="close-button" (click)="closeClick($event)">X</span>
   <button (click)="submit()">Dieses Foto hochladen</button>
 </div>
 

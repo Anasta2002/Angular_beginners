@@ -8,7 +8,7 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ImageCroppedEvent, ImageCropperModule } from 'ngx-image-cropper';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -16,35 +16,39 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './image-preview-modal.component.html',
   styleUrls: ['./image-preview-modal.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [ImageCropperModule],
 })
 export class ImagePreviewModalComponent {
-  @Input() imageUrl: string | ArrayBuffer | null | undefined = null;
-  @Output() closeModalWindow = new EventEmitter<void>();
+  @Input() imageUrl: string | null = null;
+  @Input() imageChangeEvent: Event | undefined;
+
+  @Output() onCloseModal = new EventEmitter<void>();
   @Output() onSubmit = new EventEmitter<SafeUrl>();
-  @Input() imageChangeEvent!: any;
+
   cropImgPreview: SafeUrl | undefined;
 
-  private eRef = inject(ElementRef);
+  private elementRef = inject(ElementRef);
   private sanitizer = inject(DomSanitizer);
 
   @HostListener('document:click', ['$event'])
   clickOutside(event: { target: any }) {
-    if (!this.eRef.nativeElement.contains(event.target)) {
-      this.closeModalWindow.emit();
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.onCloseModal.emit();
     }
   }
 
-  onCloseClick(event: Event): void {
+  closeClick(event: Event): void {
     event.stopPropagation();
-    this.closeModalWindow.emit();
+    this.onCloseModal.emit();
   }
 
   submit(): void {
     this.onSubmit.emit(this.cropImgPreview);
   }
 
-  cropImg(e: ImageCroppedEvent) {
-    if (e.objectUrl != null) {
+  cropImage(e: ImageCroppedEvent) {
+    if (typeof e.objectUrl === 'string') {
       this.cropImgPreview = this.sanitizer.bypassSecurityTrustUrl(e.objectUrl);
     }
   }

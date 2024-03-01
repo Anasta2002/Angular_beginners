@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,17 +6,19 @@ import {
   ViewChild,
 } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
+import { ImagePreviewModalComponent } from './image-preview-modal/image-preview-modal.component';
 
 @Component({
   selector: 'app-image-component',
   templateUrl: './image-upload.component.html',
   styleUrls: ['./image-upload.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgIf, ImagePreviewModalComponent],
 })
 export class ImageUploadComponent {
-  file: File | null = null;
-  imageUrl: string | ArrayBuffer | null | undefined = null;
-  previewWindow: boolean = false;
+  imageUrl: string | null = null;
+  showPreviewWindow: boolean = false;
   imageChangeEvent: Event | undefined;
 
   @ViewChild('imageUploadInput') private imageUploadInput:
@@ -24,10 +27,6 @@ export class ImageUploadComponent {
 
   get showImage(): boolean {
     return this.imageUrl !== null;
-  }
-
-  imageClick(): void {
-    this.showCropModal(!!this.imageUrl);
   }
 
   submitCrop(url: SafeUrl | undefined): void {
@@ -40,29 +39,28 @@ export class ImageUploadComponent {
   onFileChange(e: Event): void {
     this.imageChangeEvent = e;
 
-    this.previewWindow = true;
+    this.showPreviewWindow = true;
   }
 
-  onFileClick(event: any): void {
-    event.target.value = '';
+  onFileClick(event: Event): void {
+    (event.target as HTMLInputElement).value = '';
   }
 
-  openUpload() {
+  openUpload(): void {
     if (this.imageUploadInput) {
       this.imageUploadInput.nativeElement.click();
     }
   }
 
-  onDelete(): void {
-    this.file = null;
+  delete(): void {
     this.imageUrl = null;
   }
 
-  closeModalWindow() {
+  closeModal(): void {
     this.showCropModal(false);
   }
 
-  showCropModal(show: boolean): void {
-    this.previewWindow = show;
+  private showCropModal(show: boolean): void {
+    this.showPreviewWindow = show;
   }
 }
