@@ -1,11 +1,11 @@
-.upload_wrapper {
+.common-wrapper {
   margin: 40px;
 }
 
 .image-component-wrapper {
   display: flex;
   border: 2px solid olivedrab;
-  width: 400px;
+  width: fit-content;
   border-radius: 5px;
   height: 250px;
 }

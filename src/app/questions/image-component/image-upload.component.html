@@ -1,22 +1,44 @@
-<form [formGroup]="imageForm" class="upload_wrapper">
+<div class="common-wrapper">
   <div class="image-component-wrapper">
     <div class="left-div">
       <p>FOTO</p>
-      <p>Bitte ein Portrait-Foto, auf dem das Gesicht des Mitarbeitenden gut zu erkennen ist, hochladen oder in das Feld reinziehen.</p>
+      <p>
+        Bitte ein Portrait-Foto, auf dem das Gesicht des Mitarbeitenden gut zu
+        erkennen ist, hochladen oder in das Feld reinziehen.
+      </p>
     </div>
     <div class="right-div">
       <label for="img" class="inputs-filling">
-        <img #imgInput *ngIf="imageUrl !== null" [src]="imageUrl" alt="Uploaded Image" (click)="openPreviewModal()">
+        <img
+          *ngIf="showImage"
+          [src]="imageUrl"
+          alt="Uploaded Image"
+          (click)="imageClick()"
+        />
         <i class="material-icons">upload_file</i>
         <span>FOTO HOCHLADEN</span>
       </label>
-      <input type="file" id="img" name="img" (change)="onChange($event)">
+      <input
+        #imageUploadInput
+        type="file"
+        id="img"
+        name="img"
+        (change)="onFileChange($event)"
+        (click)="onFileClick($event)"
+      />
     </div>
   </div>
 
-  <div *ngIf="file" class="hover-buttons">
-    <i class="material-icons" (click)="onUploadAnother()">upload_file</i>
+  <div *ngIf="imageUrl" class="hover-buttons">
+    <i class="material-icons" (click)="openUpload()">upload_file</i>
     <i class="material-icons" (click)="onDelete()">delete_outline</i>
   </div>
-  <app-image-preview-modal *ngIf="previewWindow" [imageUrl]="imageUrl" (closeModalWindow)="closeModalWindow()" [imageChangeEvent]="imageChangeEvent"></app-image-preview-modal>
-</form>
+
+  <app-image-preview-modal
+    *ngIf="previewWindow"
+    [imageUrl]="imageUrl"
+    (closeModalWindow)="closeModalWindow()"
+    (onSubmit)="submitCrop($event)"
+    [imageChangeEvent]="imageChangeEvent"
+  ></app-image-preview-modal>
+</div>
