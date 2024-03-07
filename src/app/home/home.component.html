@@ -14,3 +14,8 @@
 </div>
 
 <app-dropdown></app-dropdown>
+
+<input type="file" class="file-upload" onchange="console.log(event.target.files)" #imageUploadInput>
+<div *ngIf="isImage">
+  <img src="file" alt="image">
+</div>

@@ -27,7 +27,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {ImageCropperModule} from "ngx-image-cropper";
 
 @NgModule({
-  declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent, ImageUploadComponent, ImagePreviewModalComponent],
+  declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent ],
   imports: [
     CommonModule,
     MatProgressSpinner,
@@ -51,6 +51,8 @@ import {ImageCropperModule} from "ngx-image-cropper";
     MatProgressBar,
     MatDialogModule,
     ImageCropperModule,
+    ImagePreviewModalComponent,
+    ImageUploadComponent,
   ],
   exports: [QuestionsComponent],
 })
