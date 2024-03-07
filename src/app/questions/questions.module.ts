@@ -22,7 +22,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatIcon} from "@angular/material/icon";
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {ImageUploadComponent} from "./image-component/image-upload.component";
-import {ImagePreviewModalComponent} from "./image-component/image-preview-modal/image-preview-modal.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ImageCropperModule} from "ngx-image-cropper";
 
@@ -51,7 +50,6 @@ import {ImageCropperModule} from "ngx-image-cropper";
     MatProgressBar,
     MatDialogModule,
     ImageCropperModule,
-    ImagePreviewModalComponent,
     ImageUploadComponent,
   ],
   exports: [QuestionsComponent],

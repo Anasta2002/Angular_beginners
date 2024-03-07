@@ -14,7 +14,7 @@ import { UploadIconComponent } from '../icons/upload';
 import { NotificationComponent } from '../../components/notification/notification.component';
 
 @Component({
-  selector: 'ogs-image-upload',
+  selector: 'image-upload',
   standalone: true,
   imports: [NgIf, AsyncPipe, ImageCropperModule, UploadIconComponent, DeleteIconComponent, DeleteIconComponent, DeleteIconComponent, CropIconComponent, MatButtonModule, MatProgressSpinnerModule, PlusIconComponent, CloseIconComponent, SaveIconComponent, NotificationComponent],
   templateUrl: './image-upload.component.html',
