@@ -42,6 +42,7 @@
         [resizeToHeight]="250"
         (imageCropped)="cropImage($event)"
         style="z-index: 100"
+        (cropperReady)="cropperReady($event)"
       >
       </image-cropper>
     </label>

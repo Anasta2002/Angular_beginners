@@ -17,6 +17,7 @@ import { PlusIconComponent } from '../icons/plus';
 import { SaveIconComponent } from '../icons/save';
 import { UploadIconComponent } from '../icons/upload';
 import { NotificationComponent } from '../../components/notification/notification.component';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'image-upload',
@@ -52,6 +53,14 @@ export class ImageUploadComponent {
   notificationText: string = 'Das Foto wurde erfolgreich hochgeladen';
   showNotification: boolean = false;
 
+  loader$: Subject<boolean> = new Subject();
+
+  constructor() {
+    this.loader$.subscribe((loader) => {
+      console.log('LOADER -> ', loader);
+    });
+  }
+
   @ViewChild('imageUploadInput') private imageUploadInput:
     | ElementRef<HTMLInputElement>
     | undefined;
@@ -76,6 +85,7 @@ export class ImageUploadComponent {
 
     if (file) {
       const fileType = file.type;
+      this.loader$.next(true);
 
       if (fileType === 'image/png' || fileType === 'image/jpeg') {
         this.imageUrl = URL.createObjectURL(file);
@@ -83,7 +93,6 @@ export class ImageUploadComponent {
         this.errorMessage = true;
       }
     }
-    console.log('onFileChange', this.isCropperActive);
   }
 
   onFileClick(event: Event): void {
@@ -119,5 +128,9 @@ export class ImageUploadComponent {
 
   closeNotification(): void {
     this.showNotification = false;
+  }
+
+  cropperReady(arg: any): void {
+    this.loader$.next(false);
   }
 }
