@@ -1,6 +1,11 @@
 <div class="image-component-wrapper">
-  <div class="right-div">
-    <div *ngIf="!isCropperActive && !showImage" class="btn-icon-noimage">
+  <div
+    class="right-div"
+    [ngClass]="{ dragover: dragover }"
+    (dragover)="onDragover()"
+    (drop)="onDragleave()"
+  >
+    <div *ngIf="!showImage" class="btn-icon-noimage">
       <svg
         width="30"
         height="38"
@@ -28,7 +33,7 @@
 
     <label for="img" class="inputs-filling">
       <img
-        *ngIf="!isCropperActive && imageUrl && hasBeenCropped"
+        *ngIf="!isCropperActive && imageUrl"
         [src]="imageUrl"
         alt="Uploaded Image"
       />
@@ -51,6 +56,7 @@
       type="file"
       id="img"
       name="img"
+      multiple
       (change)="onFileChange($event)"
       (click)="onFileClick($event)"
       [disabled]="isCropperActive"

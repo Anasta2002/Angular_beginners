@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,6 +37,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
     CloseIconComponent,
     SaveIconComponent,
     NotificationComponent,
+    NgClass,
   ],
   templateUrl: './image-upload.component.html',
   styleUrls: ['./image-upload.component.scss'],
@@ -55,6 +56,8 @@ export class ImageUploadComponent {
 
   loader$: Subject<boolean> = new Subject();
 
+  dragover: boolean = false;
+
   constructor() {
     this.loader$.subscribe((loader) => {
       console.log('LOADER -> ', loader);
@@ -69,6 +72,14 @@ export class ImageUploadComponent {
     return this.imageUrl !== null;
   }
 
+  onDragover(): void {
+    this.dragover = true;
+  }
+
+  onDragleave(): void {
+    this.dragover = false;
+  }
+
   submitCrop(url: SafeUrl | undefined): void {
     if (url) {
       this.imageUrl = url as string;
@@ -79,7 +90,6 @@ export class ImageUploadComponent {
   }
 
   onFileChange(event: Event): void {
-    this.isCropperActive = true;
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
 
