@@ -1,9 +1,11 @@
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -17,7 +19,7 @@ import { PlusIconComponent } from '../icons/plus';
 import { SaveIconComponent } from '../icons/save';
 import { UploadIconComponent } from '../icons/upload';
 import { NotificationComponent } from '../../components/notification/notification.component';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'image-upload',
@@ -58,6 +60,8 @@ export class ImageUploadComponent {
 
   dragover: boolean = false;
 
+  private cd = inject(ChangeDetectorRef);
+
   constructor() {
     this.loader$.subscribe((loader) => {
       console.log('LOADER -> ', loader);
@@ -93,16 +97,20 @@ export class ImageUploadComponent {
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
 
-    if (file) {
-      const fileType = file.type;
-      this.loader$.next(true);
+    this.loader$.next(true);
+    setTimeout(() => {
+      if (file) {
+        const fileType = file.type;
 
-      if (fileType === 'image/png' || fileType === 'image/jpeg') {
-        this.imageUrl = URL.createObjectURL(file);
-      } else {
-        this.errorMessage = true;
+        if (fileType === 'image/png' || fileType === 'image/jpeg') {
+          this.imageUrl = URL.createObjectURL(file);
+          this.loader$.next(false);
+        } else {
+          this.errorMessage = true;
+        }
+        this.cd.markForCheck();
       }
-    }
+    }, 3000);
   }
 
   onFileClick(event: Event): void {
@@ -140,7 +148,7 @@ export class ImageUploadComponent {
     this.showNotification = false;
   }
 
-  cropperReady(arg: any): void {
+  cropperReady(): void {
     this.loader$.next(false);
   }
 }
