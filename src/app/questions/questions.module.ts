@@ -16,17 +16,17 @@ import {
   MatAutocompleteModule,
 } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {UserCardComponent} from "./usersDropdown/user-card/user-card.component";
-import {UsersDropdownComponent} from "./usersDropdown/users-dropdown.component";
-import {HttpClientModule} from "@angular/common/http";
-import {MatIcon} from "@angular/material/icon";
-import {MatProgressBar} from "@angular/material/progress-bar";
-import {ImageUploadComponent} from "./image-component/image-upload.component";
-import {MatDialogModule} from "@angular/material/dialog";
-import {ImageCropperModule} from "ngx-image-cropper";
+import { UserCardComponent } from './usersDropdown/user-card/user-card.component';
+import { UsersDropdownComponent } from './usersDropdown/users-dropdown.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatIcon } from '@angular/material/icon';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { ImageUploadComponent } from './image-component/image-upload.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
-  declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent ],
+  declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent],
   imports: [
     CommonModule,
     MatProgressSpinner,

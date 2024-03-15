@@ -1,13 +1,23 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnInit,
   inject,
 } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { RawUser, User } from '../../models';
-import { FormControl } from '@angular/forms';
-import { debounceTime, map, merge, of, Subject, switchMap, BehaviorSubject, Observable } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  debounceTime,
+  map,
+  merge,
+  of,
+  Subject,
+  switchMap,
+  BehaviorSubject,
+  Observable,
+} from 'rxjs';
 import { StorageItem } from '../../models/storage-item';
 
 @Component({
@@ -16,20 +26,32 @@ import { StorageItem } from '../../models/storage-item';
   styleUrls: ['./users-dropdown.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class UsersDropdownComponent implements OnInit {
-  searchControl = new FormControl('');
-  onClick$: Subject<string> = new Subject();
+  private usersService = inject(UsersService);
+  private changeDetectorRef = inject(ChangeDetectorRef);
 
   private savedUser = new StorageItem<RawUser>('selected-user');
-  private usersService = inject(UsersService);
 
+  testValue: string = '';
+
+  userForm = new FormGroup({
+    name: new FormControl('', (formControl) => {
+      if (formControl.value.length !== 5) {
+        return {
+          size: 'must be greater than 5',
+        };
+      }
+
+      return null;
+    }),
+    age: new FormControl(100),
+    postcode: new FormControl(''),
+  });
+
+  searchControl = new FormControl('');
+  onClick$: Subject<string> = new Subject();
   loading$: Observable<boolean> = this.usersService.loading$;
-
-  get user(): User | null {
-    const saved = this.savedUser.get();
-    return saved ? new User(saved) : null;
-  }
+  totalUsers: number | null = null;
 
   users$ = merge(
     this.searchControl.valueChanges.pipe(debounceTime(300)),
@@ -48,12 +70,27 @@ export class UsersDropdownComponent implements OnInit {
     })
   );
 
+  get user(): User | null {
+    const saved = this.savedUser.get();
+    return saved ? new User(saved) : null;
+  }
+
+  constructor(private _userService: UsersService) {}
+
   ngOnInit(): void {
     const savedUser = this.user;
 
     if (savedUser) {
       this.searchControl.setValue(savedUser.name);
     }
+
+    this.usersService.getUsers().subscribe((users) => {
+      const firstUser = users.users.at(0);
+
+      if (firstUser) {
+        // this.userForm.controls.name.setValue(firstUser.first_name);
+      }
+    });
   }
 
   click(event: MouseEvent) {
@@ -71,5 +108,9 @@ export class UsersDropdownComponent implements OnInit {
 
   deleteCard() {
     this.savedUser.delete();
+  }
+
+  submitForm(): void {
+    console.log(this.userForm.value);
   }
 }

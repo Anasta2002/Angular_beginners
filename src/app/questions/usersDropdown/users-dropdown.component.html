@@ -1,6 +1,6 @@
 <form class="example-form">
   <mat-form-field class="wrapper" [class.loading]="loading$ | async">
-    <mat-label>User's names</mat-label>
+    <mat-label>User's names {{ totalUsers }}</mat-label>
     <input
       type="text"
       matInput
@@ -26,3 +26,30 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
+
+<mat-form-field>
+  <mat-label>String</mat-label>
+  <input matInput type="text" [(ngModel)]="testValue" />
+</mat-form-field>
+
+<div>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" [formControl]="userForm.controls.name" />
+    <mat-error *ngIf="userForm.controls.name.hasError('size')">
+      Name must be greater than <strong>5</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Age</mat-label>
+    <input matInput type="number" [formControl]="userForm.controls.age" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Postcode</mat-label>
+    <input matInput type="text" [formControl]="userForm.controls.postcode" />
+  </mat-form-field>
+
+  <button type="button" [disabled]="userForm.invalid" (click)="submitForm()">
+    submit form
+  </button>
+</div>
