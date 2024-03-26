@@ -1,0 +1,39 @@
+<app-header [showHiddenInputs]="showHiddenInputs" (showInputsEvent)="showInputs()"></app-header>
+
+<div class="buttons-container">
+  <app-button *ngFor="let lang of languages" [isImage]="true" [id]="lang.id" (buttonClicked)="onButtonClicked($event)">
+    <img [src]="lang.icon" alt="Language Icon" height="24" width="24">
+    <span class="language">{{lang.viewValue}}</span>
+  </app-button>
+</div>
+
+
+<div class="registration">
+  <div *ngIf="showQRscan" class="center-container">
+    <div class="registration-note">Bitte scannen Sie Ihren QR-Code</div>
+    <img src="../../assets/images/qr_code.png" alt="qr" />
+
+    <div id="arrowAnim">
+      <div class="arrowSliding">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrowSliding delay1">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrowSliding delay2">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrowSliding delay3">
+        <div class="arrow"></div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showHiddenInputs" class="center-container form">
+    <div class="registration-note">Bitte geben Sie Ihre Daten manuell ein</div>
+    <form class="hidden-section" *ngIf="showHiddenInputs" [formGroup]="registrationForm" (submit)="submitAndOpenDialog()">
+      <app-inputs></app-inputs>
+      <app-button type="submit">Ausdrucken</app-button>
+    </form>
+  </div>
+</div>

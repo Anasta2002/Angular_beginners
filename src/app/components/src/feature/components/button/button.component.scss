@@ -1,0 +1,28 @@
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  height: 60px;
+  width: 300px;
+  margin: 20px;
+  background-color: rgb(238, 98, 17);
+  color: rgb(253, 253, 253) !important;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    box-shadow: 0 2px 6px 0 #00000033;
+  }
+}
+
+.mdc-button__label {
+  display: flex;
+  align-items: center;
+}

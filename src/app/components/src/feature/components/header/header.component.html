@@ -1,0 +1,5 @@
+<div class="header">
+  <img src='../../../assets/images/logo.png' />
+  <app-button (click)="emitShowInputs()" *ngIf="showHiddenInputs">Zurück zu QR-Code scannen</app-button>
+  <app-button (click)="emitShowInputs()" *ngIf="!showHiddenInputs">Geben Sie Ihre Daten manuell ein</app-button>
+</div>

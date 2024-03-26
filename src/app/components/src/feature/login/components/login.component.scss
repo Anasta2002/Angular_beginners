@@ -1,0 +1,20 @@
+:host {
+  flex-direction: column;
+  height: 100%;
+  background: url('src/assets/images/login_background.svg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+
+  .header-container {
+    justify-content: center;
+    align-content: center;
+
+    //max-height: 200px;
+    //flex-direction: row;
+  }
+}

@@ -1,0 +1,9 @@
+<div class="input-wrapper container__driver">
+  <span >Bitte geben Sie Ihre Nummer ein</span>
+  <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+</div>
+
+<div class="input-wrapper container__order">
+  <span>Bitte geben Sie die Nummer der Bestellung ein</span>
+  <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+</div>

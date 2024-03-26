@@ -4,6 +4,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {OrderRegistrationComponent} from "./components/src/feature/order-registration/order-registration.component";
 
 export const routes: Routes = [
   {
@@ -36,5 +37,11 @@ export const routes: Routes = [
     component: NotFoundComponent,
     loadChildren: () =>
       import('./not-found/not-found.module').then((m) => m.NotFoundModule),
+  },
+  {
+    path: 'order-registration',
+    component: OrderRegistrationComponent,
+    // loadChildren: () =>
+    //   import('./questions/questions.module').then((m) => m.QuestionsModule),
   },
 ];

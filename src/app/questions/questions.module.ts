@@ -24,6 +24,9 @@ import {MatProgressBar} from "@angular/material/progress-bar";
 import {ImageUploadComponent} from "./image-component/image-upload.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ImageCropperModule} from "ngx-image-cropper";
+import {OrderRegistrationComponent} from "../components/src/feature/order-registration/order-registration.component";
+import {InputsComponent} from "../components/src/feature/components/inputs/inputs.component";
+import {ButtonComponent} from "../components/src/feature/components/button/button.component";
 
 @NgModule({
   declarations: [QuestionsComponent, UserCardComponent, UsersDropdownComponent ],
@@ -51,6 +54,9 @@ import {ImageCropperModule} from "ngx-image-cropper";
     MatDialogModule,
     ImageCropperModule,
     ImageUploadComponent,
+    OrderRegistrationComponent,
+    InputsComponent,
+    ButtonComponent,
   ],
   exports: [QuestionsComponent],
 })
